@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Βιογραφικό</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f4d6; /* Ανοιχτό κίτρινο */
+            color: #333;
+        }
+        
+        header {
+            background-color: #f1a800; /* Κίτρινο χρώμα */
+            color: white;
+            text-align: center;
+            padding: 40px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 3em;
+            margin: 0;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            width: 80%;
+            margin: 40px auto;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .section {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .section:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .section h2 {
+            color: #f1a800; /* Κίτρινο χρώμα */
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .section p {
+            font-size: 1.2em;
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+
+        .contact-info a {
+            text-decoration: none;
+            color: #f1a800; /* Κίτρινο χρώμα */
+            transition: color 0.3s;
+        }
+
+        .contact-info a:hover {
+            color: #ff6f00; /* Σκούρο πορτοκαλί κατά το hover */
+        }
+
+        footer {
+            background-color: #f1a800; /* Κίτρινο χρώμα */
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 1.2em;
+            position: fixed;
+            width: 100%;
+            bottom: 0;
+            box-shadow: 0 -4px 8px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Το Βιογραφικό Μου</h1>
+</header>
+
+<div class="container">
+    <section class="section">
+        <h2>Σχετικά Με Εμένα</h2>
+        <p>Είμαι προγραμματιστής με εμπειρία σε HTML, CSS, JavaScript και Python. Έχω πάθος για την ανάπτυξη εφαρμογών και την επίλυση προβλημάτων.</p>
+    </section>
+
+    <section class="section">
+        <h2>Εκπαίδευση</h2>
+        <p>Πτυχίο Πληροφορικής από το Πανεπιστήμιο Αθηνών. Συμμετοχή σε πολλά εκπαιδευτικά προγράμματα και σεμινάρια.</p>
+    </section>
+
+    <section class="section">
+        <h2>Επαγγελματική Εμπειρία</h2>
+        <p>Προγραμματιστής Web στην εταιρεία XYZ. Σχεδίασα και ανέπτυξα ιστοσελίδες και εφαρμογές, χρησιμοποιώντας τεχνολογίες όπως HTML, CSS και JavaScript.</p>
+    </section>
+
+    <section class="section">
+        <h2>Δεξιότητες</h2>
+        <p>HTML, CSS, JavaScript, React, Node.js, Python, SQL</p>
+    </section>
+
+    <section class="section">
+        <h2>Επαφή</h2>
+        <div class="contact-info">
+            <a href="mailto:example@email.com">example@email.com</a>
+            <a href="https://www.linkedin.com/in/example" target="_blank">LinkedIn</a>
+        </div>
+    </section>
+</div>
+
+<footer>
+    © 2025 Το Βιογραφικό Μου. Όλα τα δικαιώματα διατηρούνται.
+</footer>
+
+</body>
+</html>

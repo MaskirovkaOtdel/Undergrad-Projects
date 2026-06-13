@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<title>Οριζόντιο Μενού</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+  }
+
+  .mbox {
+    padding: 10px;
+    background-color: #b4b4b4;
+    width: 480px;
+    border-radius: 10px;
+    border: 2px solid red;
+  }
+
+  .dropMenu {
+    position: relative;
+    display: inline-block;
+  }
+
+  /* Κρυφή η λίστα στην αρχή */
+  .dropCont {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    z-index: 1;
+    border: 1px solid #ddd;
+  }
+
+  /* Όταν ο χρήστης περνάει το ποντίκι πάνω από το κουμπί, εμφανίζεται το μενού */
+  .dropMenu:hover .dropCont {
+    display: block;
+  }
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    width: 100%;
+    background-color: gray;
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    font-family: "Times New Roman", Times, serif;
+    color: black;
+    font-size: 18px;
+    display: block;
+    padding: 10px;
+    transition: color 0.3s, background-color 0.3s;
+  }
+
+  li:nth-child(1) a:hover {
+    background-color: blue;
+    color: white;
+  }
+
+  li:nth-child(2) a:hover {
+    background-color: red;
+    color: white;
+  }
+
+  li:nth-child(3) a:hover {
+    background-color: green;
+    color: white;
+  }
+
+  li:nth-child(4) a:hover {
+    background-color: blue;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<h1>ΟΡΙΖΟΝΤΙΟ ΜΕΝΟΥ ΠΛΟΗΓΗΣΗΣ</h1>
+
+<div class="dropMenu">
+  <button>ΜΕΝΟΥ ΠΤΥΣΣΟΜΕΝΗΣ ΛΙΣΤΑΣ</button>
+  <div class="dropCont">
+    <ul>
+      <li><a href="#">Αρχική</a></li>
+      <li><a href="#">Νέα</a></li>
+      <li><a href="#">Υπηρεσίες</a></li>
+      <li><a href="#">Επικοινωνία</a></li>
+    </ul>
+  </div>
+</div>
+
+</body>
+</html>

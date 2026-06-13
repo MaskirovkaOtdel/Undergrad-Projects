@@ -1,0 +1,26 @@
+<!Doctype html>
+<html lang="el">
+<head>
+	<meta charset="UTF-8">
+	<title>Υπολογιστης αθροισματος</title>
+	<script>
+		function calculateSum() {
+		const num1 = parseFloat(document.getElementById("num1").value)||0;
+		const num2 = parseFloat(document.getElementById("num2").value)||0;
+		const sum = num1 + num2;
+		document.getElementById("result").innerText="Άθροισμα:"+sum;
+		return false;
+		}
+		</script>
+		</head>		
+	<body>
+		<form onsubmit="return calculateSum()">
+			<label for="num1">Αριθμος1:</label><br>
+			<input type="number" id="num1" name="num1"><br>
+			<label for="num2">Αριθμος1:</label><br>
+			<input type="number" id="num2" name="num2"><br>
+			<button type="submit">Υπολογισε</button>
+			</form>
+			<p id="result"></p>
+			</body>
+			</html>

@@ -1,0 +1,14 @@
+.p3 {
+    font-size: 1.2em;
+    font-family: 'Tahoma', sans-serif;
+    line-height: 1.4;
+    margin: 20px;
+    color: red;
+    padding: 20px;
+    background-color: yellow;
+    border-radius: 8px;
+    border: 2px solid red;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    max-width: 40%;
+    display: block;
+}

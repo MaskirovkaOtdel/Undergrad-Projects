@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Old Imperial Japanese Flag</title>
+</head>
+<body>
+	<canvas id="Canvas1" width="1280" height="720" style="border:4px dotted black;"></canvas>
+	<script>
+	const canvas = document.getElementById("Canvas1");
+	const ctx = canvas.getContext("2d");
+
+	
+	ctx.fillStyle = "white";
+	ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+	
+	const centerX = canvas.width / 2;
+	const centerY = canvas.height / 2;
+	const radius = 150;
+
+	
+	ctx.fillStyle = "red";
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+	ctx.fill();
+
+	
+	const numRays = 16;
+	const rayLength = 550;
+	const rayWidth = 40;
+
+	for (let i = 0; i < numRays; i++) {
+		
+		const angle = (i * 2 * Math.PI) / numRays;
+		
+		
+		const startX = centerX + Math.cos(angle) * radius;
+		const startY = centerY + Math.sin(angle) * radius;
+
+		
+		const endX = centerX + Math.cos(angle) * (radius + rayLength);
+		const endY = centerY + Math.sin(angle) * (radius + rayLength);
+
+		
+		ctx.lineWidth = rayWidth;
+		ctx.strokeStyle = "red";
+		ctx.beginPath();
+		ctx.moveTo(startX, startY);
+		ctx.lineTo(endX, endY);
+		ctx.stroke();
+	}
+	</script>
+</body>
+</html>

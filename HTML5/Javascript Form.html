@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+	<meta charset="UTF-8">
+	<title>Form</title>
+	<script>
+		function welcomeUser() {
+		// get value from form
+		const name=document.getElementById("username").value;
+		
+		// show welcome message
+		alert("Καλως ηρθες,"+name+"!");
+		}
+		</script>
+		</head>
+		<body>
+		<h1>Παραδειγμα Φορμας</h1>
+		<form onsubmit="welcomeUser();return false;">
+			<label for="username">Όνομα:</label>
+			<input type="text" id="username" name="username" required>
+			<br><br>
+			<button type="submit">Υποβολή</button>
+		</form>
+		</body>
+		</html>

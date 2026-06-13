@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Positioning Examples</title>
+  <style>
+    .static-div {
+      position: static;
+      background-color: lightblue;
+      width: 100px;
+      height: 100px;
+    }
+
+    .relative-div {
+      position: relative;
+      top: 30px;
+      left: 50px;
+      background-color: lightcoral;
+      width: 100px;
+      height: 100px;
+    }
+
+    .absolute-div {
+      position: absolute;
+      top: 50px;
+      right: 30px;
+      background-color: lightgreen;
+      width: 100px;
+      height: 100px;
+    }
+
+    .fixed-div {
+      position: fixed;
+      bottom: 10px;
+      left: 10px;
+      background-color: lightyellow;
+      width: 100px;
+      height: 100px;
+    }
+
+    .sticky-div {
+      position: sticky;
+      top: 0;
+      background-color: lightpink;
+      width: 100px;
+      height: 100px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="static-div">Static</div>
+  <div class="relative-div">Relative</div>
+  <div class="absolute-div">Absolute</div>
+  <div class="fixed-div">Fixed</div>
+  <div class="sticky-div">Sticky</div>
+
+</body>
+</html>

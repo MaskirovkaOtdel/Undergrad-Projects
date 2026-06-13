@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Memory Stress Test</title>
+</head>
+<body>
+    <h1>Memory Stress Test</h1>
+    <button onclick="startMemoryTest()">Start Memory Test</button>
+    <button onclick="stopMemoryTest()">Stop Memory Test</button>
+
+    <script>
+        let memoryArray = [];
+
+        function startMemoryTest() {
+            try {
+                // Keep allocating memory until the system runs out of available memory
+                while (true) {
+                    memoryArray.push(new Array(1e6).fill('StressTestData'));
+                }
+            } catch (e) {
+                console.log("Out of memory or test stopped");
+            }
+        }
+
+        function stopMemoryTest() {
+            memoryArray = [];  // Clear memory allocation
+            console.log("Memory test stopped.");
+        }
+    </script>
+</body>
+</html>

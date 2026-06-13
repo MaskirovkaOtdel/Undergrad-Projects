@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>ΚΑΡΤΕΛΑ ΒΑΘΜΟΛΟΓΙΑΣ</title>
+  <style>
+    table {
+      border: 1px solid black;
+      border-collapse: collapse;
+	  border-spacing: 30px;
+      width: 100%;
+    }
+    th, td {
+	  padding-top: 10px;
+	  padding-bottom: 20px;
+	  padding-left: 30px;
+	  padding-right: 40px;
+      text-align: left;
+	  border-style: double;
+	  background-color: #96D4D4;
+    }
+    input[type="number"] {
+      width: 60px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2><b>ΚΑΡΤΕΛΑ ΒΑΘΜΟΛΟΓΙΑΣ</b></h2>
+
+  <table>
+    <tr>
+      <th>ΟΝΟΜΑ</th>
+      <th>ΤΜΗΜΑ</th>
+      <th>ΜΑΘΗΜΑ</th>
+      <th>ΒΑΘΜΟΣ</th>
+    </tr>
+    <tr>
+      <td><input type="text" name="name1" placeholder="ΟΝΟΜΑ"></td>
+      <td>
+        <select name="department1">
+          <option value="Α1">Α1</option>
+          <option value="Β1">Β1</option>
+          <option value="Γ1">Γ1</option>
+        </select>
+      </td>
+      <td><input type="text" name="subject1" placeholder="ΜΑΘΗΜΑ"></td>
+      <td><input type="number" name="grade1" min="1" max="10" placeholder="ΒΑΘΜΟΣ"></td>
+    </tr>
+    <tr>
+      <td><input type="text" name="name2" placeholder="ΟΝΟΜΑ"></td>
+      <td>
+        <select name="department2">
+          <option value="Α1">Α1</option>
+          <option value="Β1">Β1</option>
+          <option value="Γ1">Γ1</option>
+        </select>
+      </td>
+      <td><input type="text" name="subject2" placeholder="ΜΑΘΗΜΑ"></td>
+      <td><input type="number" name="grade2" min="1" max="10" placeholder="ΒΑΘΜΟΣ"></td>
+    </tr>
+    <!-- Προσθήκη νέας γραμμής δυναμικά -->
+  </table>
+
+  <button onclick="addRow()">Προσθήκη Γραμμής</button>
+
+  <script>
+    function addRow() {
+      var table = document.querySelector('table');
+      var newRow = table.insertRow();
+      
+      for (var i = 0; i < 4; i++) {
+        var newCell = newRow.insertCell();
+        if (i == 0) {
+          newCell.innerHTML = '<input type="text" placeholder="ΟΝΟΜΑ">';
+        } else if (i == 1) {
+          newCell.innerHTML = '<select><option value="Α1">Α1</option><option value="Β1">Β1</option><option value="Γ1">Γ1</option></select>';
+        } else if (i == 2) {
+          newCell.innerHTML = '<input type="text" placeholder="ΜΑΘΗΜΑ">';
+        } else if (i == 3) {
+          newCell.innerHTML = '<input type="number" min="1" max="10" placeholder="ΒΑΘΜΟΣ">';
+        }
+      }
+    }
+  </script>
+
+</body>
+</html>

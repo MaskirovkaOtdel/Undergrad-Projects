@@ -1,0 +1,126 @@
+<!Doctype html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aplos Pinakas</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100vh; 
+    background-color: #f9f9f9;
+    flex-direction: column; 
+}
+
+.container {
+    width: 700px;
+	height: 200px;
+    padding: 20px;
+    border: 5px solid red;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: flex-start; 
+    align-items: flex-start; 
+}
+
+.title {
+    text-align: center;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    color: blue;
+    margin-bottom: 20px;
+    margin-left: 20px; 
+}
+
+.foto-container {
+    width: 200px; 
+    height: 200px;
+    border: 5px solid black; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eaeaea;
+    margin-right: 20px;
+}
+
+.table-container {
+    width: 75%;
+}
+
+.table-container h2 {
+    text-align: center;
+    font-size: 20px;
+    margin-bottom: 15px;
+    font-weight: bold;
+}
+
+.table-container table {
+    width: 100%;
+	height: 200px;
+    border-collapse: collapse;
+    border: 2px dashed #333; /* Διακεκομμένο περίγραμμα για όλο τον πίνακα */
+    border-radius: 10px;
+}
+
+.table-container th {
+    background-color: #f2f2f2;
+    text-align: center; /* Κέντρο για το κείμενο του thead */
+    border: 2px dashed #333; /* Διακεκομμένο περίγραμμα γύρω από το "ΚΑΤΑΛΟΓΟΣ" */
+    font-weight: bold;
+    padding: 10px; /* Αύξηση padding για καλύτερο κεντράρισμα */
+	height: 50px;
+}
+
+.table-container td {
+    padding: 10px; 
+    text-align: center;
+	border: 2px dashed #333;
+}
+
+.table-container td img {
+    width: 100px;
+    height: auto;
+}
+
+.table-container td:hover {
+    background-color: orange;
+}
+
+.items-container {
+    margin: 20px;
+}
+</style>
+</head>
+<body>
+<h1 class="title">Κατάλογος Πινακοθήκης</h1>
+	<div class="container">
+		<div class="foto-container">
+			<p>Φωτογραφία</p>
+		</div>
+	<div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="2">ΚΑΤΑΛΟΓΟΣ</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><img src="your-image-url.jpg" alt="Πίνακας 1"></td>
+                    <td>Αυτή είναι η περιγραφή του πρώτου πίνακα.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+</body>
+</html>

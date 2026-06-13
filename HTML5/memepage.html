@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meme Upload Page</title>
+  <style>
+    body {
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      background-color: #3d2b1f;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    h1 {
+      color: #ff6347;
+      font-size: 2.5em;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .meme-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background-color: #ffffe0;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 20px;
+      width: 80%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    .meme-container input[type="file"] {
+      margin-bottom: 10px;
+      border: 2px solid #ff6347;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #fff;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .meme-container input[type="text"] {
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 2px solid #ff6347;
+      border-radius: 5px;
+      font-size: 1.2em;
+      width: 100%;
+      text-align: center;
+      box-sizing: border-box;
+    }
+
+    .meme-container button {
+      padding: 10px 20px;
+      background-color: #ff6347;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+
+    .meme-container button:hover {
+      background-color: #ff4500;
+    }
+
+    .memes-display {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 30px;
+      width: 100%;
+    }
+
+    .meme-card {
+      background-color: #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+      max-width: 200px;
+      width: 100%;
+    }
+
+    .meme-card img {
+      width: 100%;
+      height: auto;
+    }
+
+    .meme-card p {
+      background-color: #ff6347;
+      color: white;
+      margin: 0;
+      padding: 10px;
+      font-size: 1.1em;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Welcome to Meme Portal!</h1>
+
+  <div class="meme-container">
+    <input type="file" id="memeImage" accept="image/*" />
+    <input type="text" id="memeCaption" placeholder="Enter meme caption" />
+    <button onclick="addMeme()">Add Meme</button>
+  </div>
+
+  <div class="memes-display" id="memesDisplay">
+    <!-- Display added memes here -->
+  </div>
+
+  <script>
+    function addMeme() {
+      const imageInput = document.getElementById('memeImage');
+      const captionInput = document.getElementById('memeCaption');
+      const memesDisplay = document.getElementById('memesDisplay');
+
+      if (imageInput.files.length === 0 || captionInput.value.trim() === "") {
+        alert("Please upload an image and add a caption!");
+        return;
+      }
+
+      const memeImage = imageInput.files[0];
+      const memeCaption = captionInput.value.trim();
+      
+      const reader = new FileReader();
+      reader.onload = function(event) {
+        const memeCard = document.createElement('div');
+        memeCard.classList.add('meme-card');
+
+        memeCard.innerHTML = `
+          <img src="${event.target.result}" alt="Meme Image" />
+          <p>${memeCaption}</p>
+        `;
+
+        memesDisplay.appendChild(memeCard);
+
+        // Clear inputs
+        imageInput.value = "";
+        captionInput.value = "";
+      };
+
+      reader.readAsDataURL(memeImage);
+    }
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <style>
+        div +p {
+            text-decoration: underline red;
+            text-align: center;
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <h2>Επιλογέας Γειτονικά Αδέλφια</h2>
+    <p><b>Ο Επιλογέας Γειτονικά Αδέλφια</b> θα μορφοποιήσει μόνο τα πρώτα στοιχεία της σελίδας που είναι<br>
+	είναι γειτονικά, μετά από την ετικέτα &#60 div &#62 </p>
+    
+    <div class="+p">
+        <p>Είμαι παιδί div.</p>
+        <p>Είμαι παιδί div.</p>
+        <section><p>Είμαι απόγονος της ετικέτας div.</p></section>
+    </div>
+	<p> είμαι η πρώτη γειτονική παράγραφος με την div</p>
+	<p> είμαι η δεύτερη γειτονική παράγραφος με την div</p>
+</body>
+</html>

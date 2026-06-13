@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MIT Global Hub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* Global Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 20%, #d1d8e0);
+            color: #333;
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+        h1, h2, p {
+            margin-bottom: 1rem;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Navigation Bar */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #2c3e50;
+            z-index: 1000;
+            padding: 15px 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+        }
+        nav ul li {
+            margin: 0 15px;
+        }
+        nav ul li a {
+            color: #ecf0f1;
+            font-size: 1.1rem;
+            padding: 10px 20px;
+            display: block;
+            transition: background-color 0.3s;
+        }
+        nav ul li a:hover {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        /* Fade Effect */
+        .section {
+            padding: 60px 20px;
+            text-align: center;
+            background-color: #ffffff;
+            margin: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease, visibility 0s linear 1s;
+        }
+        .section.show {
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 1s ease;
+        }
+
+        /* Navigation */
+        #quick-access a {
+            cursor: pointer;
+        }
+
+        /* Other Styles as in your original code */
+        .hero {
+            position: relative;
+            height: 80vh;
+            background: url('https://via.placeholder.com/1500x800?text=MIT+Campus') no-repeat center center/cover;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            transition: background-position 0.5s ease;
+        }
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.8);
+        }
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 30px;
+            color: white;
+        }
+        .cta-button {
+            background-color: #2980b9;
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 5px;
+            margin: 10px;
+            display: inline-block;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .cta-button:hover {
+            background-color: #1f618d;
+            transform: translateY(-5px);
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+            position: relative;
+        }
+        footer a {
+            color: #e74c3c;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- Navigation Bar -->
+<nav>
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#quick-access">Quick Links</a></li>
+        <li><a href="#innovation-hub" onclick="showSection('innovation-hub')">Innovation Hub</a></li>
+        <li><a href="#global-network" onclick="showSection('global-network')">Global Education</a></li>
+        <li><a href="#policy-hub" onclick="showSection('policy-hub')">Public Policy</a></li>
+        <li><a href="#research-portal" onclick="showSection('research-portal')">Research Portal</a></li>
+    </ul>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero" id="hero">
+    <div class="hero-content">
+        <h1>Transforming Ideas into Action</h1>
+        <p>Empowering innovation, technology, and global collaboration at MIT.</p>
+        <a href="#innovation-hub" class="cta-button">Explore Innovation Hub</a>
+        <a href="#global-network" class="cta-button">Discover Global Network</a>
+    </div>
+</header>
+
+<!-- Quick Access Links -->
+<section id="quick-access" class="section">
+    <h2>Quick Access</h2>
+    <div class="quick-links">
+        <a href="javascript:void(0)" onclick="showSection('innovation-hub')" class="quick-link">Innovation Hub</a>
+        <a href="javascript:void(0)" onclick="showSection('global-network')" class="quick-link">Global Education</a>
+        <a href="javascript:void(0)" onclick="showSection('policy-hub')" class="quick-link">Public Policy</a>
+        <a href="javascript:void(0)" onclick="showSection('research-portal')" class="quick-link">Research Portal</a>
+    </div>
+</section>
+
+<!-- MIT Innovation Hub Section -->
+<section id="innovation-hub" class="section">
+    <h2>MIT Innovation Hub</h2>
+    <p>Explore MIT's entrepreneurial ecosystem, startup resources, and interdisciplinary research opportunities.</p>
+    <a href="https://www.mit.edu/innovation/" class="cta-button">Visit Innovation Hub</a>
+</section>
+
+<!-- MIT Global Education Network -->
+<section id="global-network" class="section">
+    <h2>MIT Global Education Network</h2>
+    <p>Connect with global learning opportunities, virtual campus tours, and international academic partnerships at MIT.</p>
+    <a href="https://global.mit.edu/" class="cta-button">Explore Global Network</a>
+</section>
+
+<!-- MIT Public Policy Hub -->
+<section id="policy-hub" class="section">
+    <h2>MIT Public Policy Hub</h2>
+    <p>Discover MIT's Public Policy and Civic Engagement initiatives for positive change.</p>
+    <a href="https://policylab.mit.edu/" class="cta-button">MIT Policy Lab</a>
+    <a href="https://solve.mit.edu/" class="cta-button">MIT Solvers</a>
+</section>
+
+<!-- MIT Research Portal -->
+<section id="research-portal" class="section">
+    <h2>MIT Research Portal</h2>
+    <p>Browse the latest research, collaborate with MIT scholars, and access groundbreaking studies across disciplines.</p>
+    <a href="https://www.mit.edu/research/" class="cta-button">Explore Research Portal</a>
+</section>
+
+<!-- Footer Section -->
+<footer>
+    <div class="footer-content">
+        <p>MIT &copy; 2024 | <a href="#privacy-policy">Privacy Policy</a> | <a href="#terms-of-service">Terms of Service</a> | <a href="#cookie-policy">Cookie Policy</a></p>
+    </div>
+</footer>
+
+<!-- JavaScript for Section Fade Effect -->
+<script>
+    function showSection(sectionId) {
+        // Hide all sections
+        document.querySelectorAll('.section').forEach(function(section) {
+            section.classList.remove('show');
+        });
+
+        // Show the selected section
+        const section = document.getElementById(sectionId);
+        if (section) {
+            section.classList.add('show');
+        }
+    }
+
+    // Optionally, trigger showing the first section by default
+    document.addEventListener('DOMContentLoaded', function() {
+        showSection('innovation-hub');
+    });
+</script>
+
+</body>
+</html>

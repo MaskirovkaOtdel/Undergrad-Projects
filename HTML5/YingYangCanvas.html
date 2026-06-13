@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Canvas Experiment</title>
+</head>
+<body>
+	<canvas id="Canvas1" width="1280" height="720" style="border:4px dotted black;"></canvas>
+	<script>
+	const canvas = document.getElementById("Canvas1");
+	const ctx = canvas.getContext("2d");
+
+
+	const centerX = canvas.width / 2;
+	const centerY = canvas.height / 2;
+	const radius = 150;
+
+	
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+	ctx.stroke();
+
+	
+	ctx.fillStyle = "red";
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, radius, Math.PI / 2, 3 * Math.PI / 2);
+	ctx.lineTo(centerX, centerY);
+	ctx.fill();
+
+	
+	ctx.fillStyle = "blue";
+	ctx.beginPath();
+	ctx.arc(centerX, centerY, radius, -Math.PI / 2, Math.PI / 2);
+	ctx.lineTo(centerX, centerY);
+	ctx.fill();
+
+	
+	ctx.fillStyle = "red";
+	ctx.beginPath();
+	ctx.arc(centerX, centerY - radius / 2, radius / 2, 0, 2 * Math.PI);
+	ctx.fill();
+
+	
+	ctx.fillStyle = "blue";
+	ctx.beginPath();
+	ctx.arc(centerX, centerY + radius / 2, radius / 2, 0, 2 * Math.PI);
+	ctx.fill();
+	</script>
+</body>
+</html>
