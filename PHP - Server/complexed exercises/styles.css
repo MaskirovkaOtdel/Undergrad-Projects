@@ -1,0 +1,151 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+	color: #c28100;
+}
+
+body {
+    background-color: #181000;
+    color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: auto;
+    height: 100vh;
+    padding: 20px;
+}
+
+
+.container {
+    background: #020100;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+}
+
+
+h2 {
+    color: #c28100;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: 600;
+}
+
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    font-weight: 600;
+    font-size: 14px;
+    color: #c28100;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    border: 1px solid #c28100; 
+    border-radius: 6px;
+    font-size: 16px;
+    background-color: #020100; 
+    color: #c28100; 
+    transition: 0.3s ease-in-out;
+}
+
+.input-group input:focus {
+    border-color: #ffb300; 
+    outline: none;
+    box-shadow: 0 0 5px rgba(255, 179, 0, 0.5);
+}
+
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+button {
+    width: 48%;
+    padding: 12px;
+    border: none;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button[type="submit"] {
+    background-color: #ccc;
+    
+}
+
+button[type="submit"]:hover {
+    background-color: #999;
+}
+
+.reset-btn {
+    background-color: #ccc;
+}
+
+.reset-btn:hover {
+    background-color: #999;
+}
+
+
+.result {
+    font-size: 16px;
+    margin: 10px 0;
+    padding: 8px;
+    background: #eef2f7;
+    border-radius: 6px;
+}
+
+.error {
+    color: #d9534f;
+    font-weight: 600;
+    background: #f8d7da;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+
+.back-btn {
+    display: inline-block;
+    text-decoration: none;
+    background-color: #28a745;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-top: 20px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background-color: #218838;
+}
+
+
+@media (max-width: 500px) {
+    .container {
+        padding: 20px;
+    }
+    button {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .button-group {
+        flex-direction: column;
+    }
+}
