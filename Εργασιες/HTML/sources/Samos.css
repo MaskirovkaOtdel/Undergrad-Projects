@@ -1,0 +1,70 @@
+		body {
+            background-color: #f0f8ff; /* Ελαφρύ μπλε φόντο */
+            font-family: 'Georgia', serif; /* Κλασική γραμματοσειρά για καλύτερη ανάγνωση */
+            margin: 0;
+            padding: 0;
+        }
+        
+        h1 {
+            text-align: center;
+            font-size: 3.5em; /* Μεγαλύτερος τίτλος */
+            color: #2e3d47;
+            margin-top: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1); /* Σκιά για πιο έντονο τίτλο */
+        }
+
+        h2 {
+            text-align: left;
+            font-size: 2.2em;
+            color: #4e5b6e;
+            margin-left: 20px;
+            margin-top: 20px;
+        }
+
+        p {
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin: 20px;
+            color: #333333;
+            padding: 10px;
+            background-color: #ffffff; /* Λευκό φόντο για το κείμενο */
+            border-radius: 8px; /* Στρογγυλεμένες γωνίες για ένα πιο μοντέρνο look */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Σκιά για το κείμενο */
+        }
+
+        ul {
+            list-style-type: disc;
+            margin: 20px 40px;
+            font-size: 1.1em;
+        }
+
+        .table-container {
+            width: 80%;
+            margin: 30px auto;
+            border-collapse: collapse;
+        }
+
+        table {
+            width: 100%;
+            border: 2px solid #cccccc;
+            border-radius: 8px; /* Στρογγυλεμένες γωνίες για τον πίνακα */
+        }
+
+        td {
+            text-align: center;
+            padding: 15px;
+            border: 2px solid #cccccc;
+            background-color: #f9f9f9; /* Απαλό χρώμα για τα κελιά */
+        }
+
+        td img {
+            width: 100%;
+            height: auto;
+            max-width: 200px;
+            border-radius: 8px; /* Στρογγυλεμένες γωνίες για τις εικόνες */
+            transition: transform 0.3s ease; /* Εφέ κατά τη διάρκεια hover */
+        }
+
+        td img:hover {
+            transform: scale(1.05); /* Ελαφριά μεγέθυνση κατά το hover */
+        }

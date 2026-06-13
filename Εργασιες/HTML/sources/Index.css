@@ -1,0 +1,113 @@
+body {
+    background-color: #eef2f3; 
+    background: linear-gradient(to right, #eef2f3, #D8BFD8);
+    font-family: Times New Roman, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.0;
+}
+
+.Div {
+    background-color: #ADD8E6;
+    width: 720px;
+    height: 380px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 20px;
+    margin-left: 20px;
+    text-align: left;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    background-color: #ffffff;
+    float: left;
+}
+
+h1 {
+    font-size: 200%;
+    text-align: center;
+    color: #2a2a72;
+}
+
+h2 {
+    font-size: 140%;
+    text-align: left;
+    color: #4c4c6d;
+    margin-top: 20px;
+}
+
+p {
+    font-family: Times New Roman, serif;
+	font-size:100%;
+    text-align: left;
+}
+
+.p2 {
+    font-family: Times New Roman, serif;
+	font-size: 100%;
+    font-style: italic;
+    text-align: center;
+    color: red;
+    text-decoration: underline;
+}
+
+table {
+    margin-top: 20px; /* Απόσταση από το πάνω περιεχόμενο */
+    margin-left: 20px; /* Τοποθέτηση πιο αριστερά */
+    border-collapse: collapse;
+    width: 60%;
+	float: left;
+}
+
+th, td {
+    border: 2px solid #946b94;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background-color: #eef2f3;
+	background: linear-gradient(to right, #D8BFD8);
+}
+
+td:nth-child(1) {
+    background-color: #eef2f3;
+}
+
+td:nth-child(2) {
+    background-color: #eef2f3;
+	background: linear-gradient(to right, #eef2f3, #D8BFD8);
+}
+
+a {
+    color: #007acc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.contact {
+    margin-top: 0px; /* Απόσταση από τον πίνακα */
+    margin-left: 30px; /* Τοποθέτηση πιο αριστερά */
+	float: left;
+}
+
+/* Στυλ για την εικόνα */
+img {
+    max-width: 400px;
+    max-height: 300px;
+    margin-left: 20px;
+    margin-top: 0px;
+	border: 3px solid blue;
+    float: left;
+}
+.hlight {
+	font-family: Times New Roman, serif;
+	font-size: 100%;
+    color: #664400;
+}
+.hlight2 {
+	font-family: Times New Roman, serif;
+	font-size: 100%;
+	color: #006bb3;
+}

@@ -1,0 +1,132 @@
+/* Βασικές Ρυθμίσεις */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif; /* Χρήση σύγχρονης γραμματοσειράς */
+}
+
+body {
+    background-color: #f7f7f7; /* Λίγο πιο ανοιχτό φόντο για φρέσκια αίσθηση */
+    color: #333;
+    line-height: 1.8; /* Αύξηση του line-height για καλύτερη αναγνωσιμότητα */
+    font-size: 16px; /* Καθορισμός βασικού μεγέθους γραμματοσειράς */
+}
+
+/* Βασική Container για κεντραρισμένο περιεχόμενο */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Στυλ για τίτλους */
+h1, h2, h3 {
+    color: #2c3e50;
+    font-weight: 600; /* Ενίσχυση της έντασης στους τίτλους */
+}
+
+h1 {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+}
+
+h2 {
+    font-size: 2.8rem;
+    margin-bottom: 15px;
+    color: #2980b9;
+}
+
+h3 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+    color: #34495e;
+}
+
+/* Σχεδίαση Header */
+header {
+    background-image: url('sources/Pilio.jpg');
+    background-size: cover;
+    background-position: center;
+    color: #fff;
+    text-align: center;
+    padding: 120px 20px; /* Αυξήσαμε το padding για να υπάρχει περισσότερος χώρος */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+    font-size: 4rem;
+    text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+}
+
+/* Σχεδίαση Εισαγωγής */
+.intro {
+    background-color: #fff;
+    padding: 80px 20px; /* Περισσότερο padding για καλύτερη παρουσίαση */
+}
+
+.intro p {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: #7f8c8d;
+}
+
+/* Σχεδίαση Αξιοθέατων */
+.attractions {
+    background-color: #ecf0f1;
+    padding: 80px 20px;
+}
+
+.attractions h2 {
+    text-align: center;
+    font-size: 2.8rem;
+    color: #16a085;
+    margin-bottom: 30px;
+}
+
+/* Χρησιμοποιούμε display: inline-block για τα αξιοθέατα */
+.grid {
+    text-align: center;
+}
+
+.attraction {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Ρύθμιση πλάτους για 3 στήλες */
+    display: inline-block; /* Επαναφορά του inline-block για τοποθέτηση σε γραμμές */
+    margin: 0 10px 20px; /* Απόσταση μεταξύ των στοιχείων */
+    vertical-align: top;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    min-height: 400px; /* Εξασφαλίζουμε σταθερό ύψος για συμμετρία */
+}
+
+.attraction img {
+    max-width: 100%;
+    border-radius: 12px;
+    margin-bottom: 15px;
+}
+
+/* Hover Effects για πιο διαδραστική εμπειρία */
+.attraction:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Responsive Σχεδίαση */
+@media screen and (max-width: 768px) {
+    .grid {
+        text-align: center;
+    }
+
+    .attraction {
+        width: 90%; /* Εναλλάσσουμε την διάταξη σε μία στήλη */
+        margin: 0 0 30px 0;
+        min-height: 350px; /* Μικρότερο ύψος για μικρότερες οθόνες */
+    }
+
+    header {
+        padding: 80px 20px; /* Μειώνουμε το padding του header για μικρότερες οθόνες */
+    }
+}

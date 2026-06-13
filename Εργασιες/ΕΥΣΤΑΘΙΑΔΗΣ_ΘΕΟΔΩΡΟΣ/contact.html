@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Εγγραφή σε ταξίδι</title>
+    <link rel="stylesheet" href="sources/contact.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Εγγραφή σε ταξίδι</h2>
+
+        <form action="" method="POST">
+            <div class="form-group">
+                <label for="firstname">Όνομα:</label>
+                <input type="text" id="firstname" name="firstname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="lastname">Επώνυμο:</label>
+                <input type="text" id="lastname" name="lastname" required>
+            </div>
+
+            <div class="form-group">
+                <label for="trip">Ταξίδι:</label>
+                <select id="trip" name="trip" required>
+                    <option value="Mykonos">Μύκονος</option>
+                    <option value="Santorini">Σαντορίνη</option>
+                    <option value="Samos">Σάμος</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="people">Άτομα:</label>
+                <select id="people" name="people" required>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">Παρατηρήσεις:</label>
+                <textarea id="comments" name="comments" rows="10" cols="50"></textarea>
+            </div>
+
+            <div class="form-group">
+                <button type="submit">Αποστολή</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
