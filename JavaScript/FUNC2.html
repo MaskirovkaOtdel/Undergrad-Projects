@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Surface Calc Func</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #E5C100;
+        }
+
+        .container {
+            background: #1E1E1E;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(229, 193, 0, 0.3);
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            border: 1px solid #E5C100;
+        }
+
+        h2 {
+            color: #E5C100;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        p {
+            color: #ccc;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        input {
+            width: calc(100% - 20px);
+            padding: 12px;
+            margin: 10px 0;
+            border: 2px solid #E5C100;
+            border-radius: 5px;
+            font-size: 16px;
+            background: #222;
+            color: #E5C100;
+            transition: border-color 0.3s, background 0.3s;
+        }
+
+        input:focus {
+            border-color: #FFD700;
+            outline: none;
+            background: #333;
+        }
+
+        button {
+            background: linear-gradient(45deg, #E5C100, #D4A017);
+            color: #121212;
+            border: none;
+            padding: 12px 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background 0.3s, transform 0.2s;
+        }
+
+        button:hover {
+            background: linear-gradient(45deg, #FFD700, #E5C100);
+            transform: scale(1.05);
+        }
+
+        #result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Circle Surface</h2>
+        <p>Provide Circle Radius in meters:</p>
+        <input type="number" id="radius" placeholder="Enter radius">
+        <button onclick="surface()">Calculate</button>
+        <p id="result"></p>
+    </div>
+
+    <script>
+        function surface() {
+            let rad, surf, output; 
+            
+            output = document.getElementById("result");
+            rad = document.getElementById("radius").value;            
+            rad = parseFloat(rad);
+            
+            if (isNaN(rad) || rad <= 0) {
+                output.innerText = "Please enter a valid positive number for radius.";
+                output.style.color = "#FF4C4C";
+                return;
+            }
+            
+            surf = Math.PI * rad * rad;
+            output.innerText = `The Surface of a Circle with radius ${rad} meters is: ${surf.toFixed(2)} square meters.`;
+            output.style.color = "#E5C100";
+        }
+    </script>
+</body>
+</html>

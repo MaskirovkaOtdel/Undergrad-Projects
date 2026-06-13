@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DOM Example 3 - Toggle Images</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding-top: 50px;
+      background-color: #f9f9f9;
+    }
+
+    img {
+      max-width: 80%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      transition: opacity 0.5s ease-in-out;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <img id="image" src="photo1.jpg" alt="Photo 1">
+  <br>
+  <button id="changeBtn">Change Image</button>
+
+  <script>
+    const changeButton = document.getElementById("changeBtn");
+    const img = document.getElementById("image");
+
+    let isFirstPhoto = true;
+
+    changeButton.addEventListener("click", () => {
+      img.style.opacity = 0.3; // Fade out
+      setTimeout(() => {
+        if (isFirstPhoto) {
+          img.src = "photo2.jpg";
+          img.alt = "Photo 2";
+        } else {
+          img.src = "photo1.jpg";
+          img.alt = "Photo 1";
+        }
+        img.style.opacity = 1; // Fade in
+        alert(`The ALT attribute is: ${img.alt}`);
+        isFirstPhoto = !isFirstPhoto;
+      }, 300);
+    });
+  </script>
+
+</body>
+</html>

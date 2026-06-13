@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Guess the Number</title>
+    <style>
+        :root {
+            --bg-color: linear-gradient(to right, #667eea, #764ba2);
+            --text-color: white;
+            --button-bg: white;
+            --button-text: #333;
+        }
+
+        body.light-mode {
+            --bg-color: linear-gradient(to right, #f5f7fa, #c3cfe2);
+            --text-color: #333;
+            --button-bg: #333;
+            --button-text: white;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--bg-color);
+            color: var(--text-color);
+            padding: 30px;
+            text-align: center;
+            transition: background 0.3s ease;
+        }
+
+        h1 {
+            font-size: 3em;
+        }
+
+        .button-grid {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        button {
+            background-color: var(--button-bg);
+            color: var(--button-text);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 24px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            opacity: 0.85;
+        }
+
+        button:disabled {
+            background-color: #bbb;
+            cursor: not-allowed;
+        }
+
+        select {
+            font-size: 1em;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 6px;
+        }
+
+        #result {
+            font-size: 24px;
+            margin: 15px 0;
+        }
+
+        #stats, #history {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+
+        #history ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #history li {
+            margin: 5px 0;
+            font-family: monospace;
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .toggle {
+            padding: 6px 12px;
+            border-radius: 6px;
+            border: none;
+            background-color: #00000030;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="top-bar">
+        <h1>🎯 Guess the Number</h1>
+        <button class="toggle" onclick="toggleTheme()">🌗 Toggle Theme</button>
+    </div>
+
+    <p>
+        Select range:
+        <select id="rangeSelector" onchange="setRange()">
+            <option value="5">1–5</option>
+            <option value="10">1–10</option>
+            <option value="20">1–20</option>
+        </select>
+    </p>
+
+    <div class="button-grid" id="buttonsContainer"></div>
+
+    <p id="result">Start guessing...</p>
+
+    <div id="stats">
+        Attempts: <span id="tries">0</span> |
+        Best Score: <span id="bestScore">--</span>
+    </div>
+
+    <div id="history">
+        <h3>History:</h3>
+        <ul id="historyList"></ul>
+    </div>
+
+    <button onclick="resetGame()">🔄 Play Again</button>
+
+    
+    <audio id="sound-correct" src="https://www.soundjay.com/button/sounds/button-3.mp3"></audio>
+    <audio id="sound-wrong" src="https://www.myinstants.com/en/instant/fart-with-reverb-17715/"></audio>
+    <audio id="sound-reset" src="https://www.soundjay.com/button/sounds/button-4.mp3"></audio>
+
+    <script>
+        let secret, tries = 0, max = 5;
+        let bestScore = localStorage.getItem("bestScore") || null;
+        const historyList = document.getElementById("historyList");
+
+        document.addEventListener("DOMContentLoaded", () => {
+            if (bestScore) document.getElementById("bestScore").innerText = bestScore;
+            generateButtons(max);
+            resetGame();
+        });
+
+        function setRange() {
+            max = parseInt(document.getElementById("rangeSelector").value);
+            generateButtons(max);
+            resetGame();
+        }
+
+        function generateButtons(limit) {
+            const container = document.getElementById("buttonsContainer");
+            container.innerHTML = "";
+            for (let i = 1; i <= limit; i++) {
+                const btn = document.createElement("button");
+                btn.innerText = i;
+                btn.onclick = () => guessNumber(i);
+                container.appendChild(btn);
+            }
+        }
+
+        function guessNumber(number) {
+            tries++;
+            document.getElementById("tries").innerText = tries;
+
+            const result = document.getElementById("result");
+
+            if (number === secret) {
+                result.innerHTML = `✅ Correct! The number was <strong>${secret}</strong> 🎉`;
+                result.style.color = "lightgreen";
+                disableButtons();
+                playSound("correct");
+
+                if (!bestScore || tries < bestScore) {
+                    bestScore = tries;
+                    localStorage.setItem("bestScore", bestScore);
+                    document.getElementById("bestScore").innerText = bestScore;
+                }
+            } else {
+                result.innerText = "❌ Incorrect, try again!";
+                result.style.color = "salmon";
+                playSound("wrong");
+            }
+
+            addToHistory(number, number === secret);
+        }
+
+        function disableButtons() {
+            const buttons = document.querySelectorAll("#buttonsContainer button");
+            buttons.forEach(btn => btn.disabled = true);
+        }
+
+        function resetGame() {
+            secret = Math.floor(Math.random() * max) + 1;
+            tries = 0;
+            document.getElementById("tries").innerText = tries;
+            document.getElementById("result").innerText = "Start guessing...";
+            document.getElementById("result").style.color = "var(--text-color)";
+            document.querySelectorAll("#buttonsContainer button").forEach(btn => btn.disabled = false);
+            historyList.innerHTML = "";
+            playSound("reset");
+        }
+
+        function addToHistory(guess, correct) {
+            const entry = document.createElement("li");
+            entry.innerHTML = `You guessed <strong>${guess}</strong> - ${correct ? '✅ Correct' : '❌ Wrong'}`;
+            entry.style.color = correct ? "lightgreen" : "salmon";
+            historyList.appendChild(entry);
+        }
+
+        function toggleTheme() {
+            document.body.classList.toggle("light-mode");
+        }
+
+        function playSound(type) {
+            const sounds = {
+                correct: document.getElementById("sound-correct"),
+                wrong: document.getElementById("sound-wrong"),
+                reset: document.getElementById("sound-reset")
+            };
+            if (sounds[type]) {
+                sounds[type].currentTime = 0;
+                sounds[type].play();
+            }
+        }
+    </script>
+</body>
+</html>
+<!--the code has to keep a record of the "best score" record but after 1 consecutive attempt it still remains 1

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form JS Integration</title>
+    <style>
+		h1,h2 {
+			text-align:center;
+			margin: auto;
+			}
+        table {
+            width: 50%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        table, th, td {
+            border: 2px solid black;
+			
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .form-container {
+            width: 50%;
+            margin: 0 auto;
+        }
+		
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <form id="MyForm">
+            <h1>Enter your credentials</h1>
+            <table>
+                <tr>
+                    <td><b>Name:</b></td>
+                    <td><input type="text" id="name" required></td>
+                </tr>
+                <tr>
+                    <td><b>Email Address:</b></td>
+                    <td><input type="email" id="email" required></td>
+                </tr>
+                <tr>
+                    <td><b>Age:</b></td>
+                    <td><input type="number" id="age" min="1" max="100" required></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <button type="submit">Submit</button>
+                    </td>
+                </tr>
+            </table>
+        </form>
+
+        <div id="output"></div>
+    </div>
+
+    <script src="FormJS.js"></script>
+</body>
+</html>
+

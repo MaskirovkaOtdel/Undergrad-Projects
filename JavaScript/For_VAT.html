@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Price Calculation with VAT</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7f6;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+
+    .container {
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+      width: 100%;
+      max-width: 500px;
+      text-align: center;
+    }
+
+    h2 {
+      color: #4CAF50;
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    h3 {
+      color: #333;
+      font-size: 20px;
+      margin-top: 20px;
+      margin-bottom: 10px;
+    }
+
+    #totalPrice {
+      font-size: 28px;
+      font-weight: bold;
+      color: #FF5722;
+      padding: 10px;
+      border: 2px solid #FF5722;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .product-details {
+      text-align: left;
+      margin-top: 20px;
+    }
+
+    .product-details p {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+
+    input[type="button"] {
+      background-color: #4CAF50;
+      color: white;
+      cursor: pointer;
+      border: none;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 20px;
+    }
+
+    input[type="button"]:hover {
+      background-color: #45a049;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Price Calculation with VAT for Products</h2>
+    
+    <div id="productDetails" class="product-details"></div>
+    
+    <h3>Final Price after VAT:</h3>
+    <p id="totalPrice">0.00</p>
+
+    <input type="button" value="Calculate Price" onclick="calculateFinalPrice()">
+  </div>
+
+  <script>
+    function calculateFinalPrice() {
+      let total = 0;
+      const vatRate = 0.24;
+      let detailsHTML = '';
+
+      for (let i = 1; i <= 5; i++) {
+        const productName = prompt(`Enter the name of product ${i}:`);
+        const productPrice = parseFloat(prompt(`Enter the price of ${productName}:`));
+        const discountPercentage = parseFloat(prompt(`Enter the discount percentage for ${productName}:`));
+
+        if (isNaN(productPrice) || isNaN(discountPercentage)) {
+          alert("Invalid input! Please enter numbers for price and discount.");
+          return;
+        }
+
+        const discountAmount = (productPrice * discountPercentage) / 100;
+        const priceAfterDiscount = productPrice - discountAmount;
+
+        total += priceAfterDiscount;
+
+        detailsHTML += `<p><strong>${productName}</strong>: Original Price: €${productPrice.toFixed(2)}, Discount: ${discountPercentage}%, Final Price: €${priceAfterDiscount.toFixed(2)}</p>`;
+      }
+
+      const vatAmount = total * vatRate;
+      const finalPrice = total + vatAmount;
+
+      document.getElementById("productDetails").innerHTML = detailsHTML;
+      document.getElementById("totalPrice").textContent = `€${finalPrice.toFixed(2)}`;
+    }
+  </script>
+</body>
+</html>

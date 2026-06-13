@@ -1,0 +1,17 @@
+<script>
+function divide(x,y) {
+	try {
+		if(y===0){
+			throw new Error("Cannot divide with 0!");
+			}
+		let result =x/y;
+		console.log(result);
+		
+		} catch(e){
+			console.error("Error caught: ",e.message);
+			document.write("Error caught: ", e.message);
+			}
+		
+}
+divide(10,0);
+</script>

@@ -1,0 +1,86 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Sum Calculation</title>
+	<style>
+		body {
+			font-family: Arial,sans-serif;
+			margin: 50px;
+		}
+		input {
+			margin: 5px;
+			padding: 8px;
+			font-size: 16px;
+		}
+		button {
+			padding: 8px 12px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+		#result {
+			margin-top: 10px;
+			font-size: 18px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h2>Sum Calculation</h2>
+	<form onsubmit="calculateSum(event)">
+		<label for="num1">Enter first number</label>
+		<input type="number" id="num1" required>
+		<br>
+		<label for="num2">Enter second number</label>
+		<input type="number" id="num2" required>
+		<br>
+		<button type="submit">Calculate Sum</button>
+	</form>
+
+	<p id="result"></p>
+
+	<h2>Solve an Elementary Equation type ax + b = 0</h2>
+	<label for="a">Enter a (coefficient of x):</label>
+	<input type="number" id="a" placeholder="Enter a">
+	<br><br>
+	<label for="b">Enter b (constant term):</label>
+	<input type="number" id="b" placeholder="Enter b">
+	<br><br>
+	<button type="button" onclick="solveEquation()">Solve</button>
+
+	<p id="Equation"></p>
+
+	<script>
+		function calculateSum(event) {
+			event.preventDefault();
+
+			let num1 = parseFloat(document.getElementById("num1").value);
+			let num2 = parseFloat(document.getElementById("num2").value);
+
+			let sum = num1 + num2;
+
+			document.getElementById("result").innerText = "Sum: " + sum;
+		}
+
+		function solveEquation() {
+			// Get the values of 'a' and 'b' from user input
+			let a = parseFloat(document.getElementById("a").value);
+			let b = parseFloat(document.getElementById("b").value);
+
+			// Check if 'a' is zero to avoid division by zero
+			if (a === 0) {
+				if (b === 0) {
+					alert("The equation has infinite solutions.");
+				} else {
+					alert("The equation has no solution.");
+				}
+			} else {
+				// Solve the equation ax + b = 0
+				let x = -b / a;
+				document.getElementById("Equation").innerText = "Equation Solution is: x = " + x;
+			}
+		}
+	</script>
+</body>
+</html>

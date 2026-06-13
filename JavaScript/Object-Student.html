@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Registration</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f3f5;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .box {
+      background-color: #ffffff;
+      padding: 30px;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 480px;
+    }
+
+    h1 {
+      font-size: 26px;
+      color: #4A4A4A;
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    label {
+      font-size: 14px;
+      color: #555;
+      margin-bottom: 8px;
+      font-weight: 500;
+      text-align: left;
+      display: block;
+    }
+
+    input[type="text"], input[type="number"] {
+      padding: 12px 15px;
+      font-size: 16px;
+      width: 100%;
+      margin-bottom: 20px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      background-color: #f8f8f8;
+      transition: border-color 0.3s ease-in-out;
+    }
+
+    input[type="text"]:focus, input[type="number"]:focus {
+      border-color: #4CAF50;
+      outline: none;
+    }
+
+    button {
+      padding: 14px 20px;
+      background-color: #444;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s ease-in-out;
+    }
+
+    button:hover {
+      background-color: #666;
+    }
+
+    .student-list {
+      margin-top: 30px;
+      font-size: 16px;
+      font-weight: 500;
+      color: #4A4A4A;
+      text-align: left;
+    }
+
+    ul {
+      padding-left: 20px;
+      list-style-type: none;
+    }
+
+    li {
+      background-color: #f9f9f9;
+      padding: 12px;
+      border-radius: 6px;
+      margin-bottom: 10px;
+      border: 1px solid #ddd;
+      font-size: 14px;
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    
+    h3 {
+      font-size: 20px;
+      color: #333;
+      font-weight: 600;
+      margin-bottom: 15px;
+	  text-align: center;
+    }
+
+    
+    @media (max-width: 480px) {
+      .box {
+        padding: 20px;
+      }
+
+      h1 {
+        font-size: 24px;
+      }
+
+      input[type="text"], input[type="number"], button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="box">
+      <h1>Student Registration</h1>
+      
+      <label for="name">First Name</label>
+      <input type="text" id="name" placeholder="Enter first name" required>
+
+      <label for="surname">Last Name</label>
+      <input type="text" id="surname" placeholder="Enter last name" required>
+
+      <label for="telephone">Telephone Number</label>
+      <input type="text" id="telephone" placeholder="Enter telephone number" required>
+
+      <label for="registryNumber">Registry Number</label>
+      <input type="number" id="registryNumber" placeholder="Enter registry number" required>
+
+      <button onclick="registerStudent()">Register Student</button>
+
+      <div class="student-list" id="studentList">
+        <h3>Registered Students</h3>
+        <ul id="studentDetails"></ul>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    
+    let students = [];
+
+    
+    function registerStudent() {
+      
+      const name = document.getElementById("name").value;
+      const surname = document.getElementById("surname").value;
+      const telephone = document.getElementById("telephone").value;
+      const registryNumber = document.getElementById("registryNumber").value;
+
+      
+      if (!name || !surname || !telephone || !registryNumber) {
+        alert("Please fill in all fields.");
+        return;
+      }
+
+      
+      const newStudent = {
+        name: name,
+        surname: surname,
+        telephone: telephone,
+        registryNumber: registryNumber
+      };
+
+      
+      students.push(newStudent);
+
+      
+      displayStudents();
+
+      
+      document.getElementById("name").value = '';
+      document.getElementById("surname").value = '';
+      document.getElementById("telephone").value = '';
+      document.getElementById("registryNumber").value = '';
+    }
+
+    
+    function displayStudents() {
+      const studentList = document.getElementById("studentDetails");
+
+      
+      studentList.innerHTML = '';
+
+      
+      students.forEach((student, index) => {
+        const li = document.createElement("li");
+        li.innerHTML = `Name: ${student.name} ${student.surname} <br> Telephone: ${student.telephone} <br> Registry Number: ${student.registryNumber}`;
+		studentList.appendChild(li);
+		});
+    }
+  </script>
+
+</body>
+</html>
+
+

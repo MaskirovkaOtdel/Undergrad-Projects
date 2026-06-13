@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8" />
+  <title>Διαστημική Μάχη</title>
+  <style>
+    html, body {
+      margin: 0; padding: 0; overflow: hidden; height: 100%; width: 100%;
+      font-family: 'Courier New', Courier, monospace;
+      background: black;
+    }
+    #game {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      transition: background-image 1s ease-in-out;
+    }
+    #ship {
+      position: absolute;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 60px;
+      transition: left 0.05s;
+      animation: pulse 2s infinite;
+    }
+    #ship img {
+      width: 150%;
+      height: 150%;
+      object-fit: contain;
+      filter: drop-shadow(0 0 12px cyan);
+    }
+    @keyframes pulse {
+      0%, 100% { transform: translateX(-50%) scale(1); }
+      50% { transform: translateX(-50%) scale(1.05); }
+    }
+    .bullet {
+      position: absolute;
+      width: 6px;
+      height: 25px;
+      background: red;
+      border-radius: 3px;
+      box-shadow: 0 0 10px red;
+    }
+    .alien {
+      position: absolute;
+      font-size: 60px;
+      animation: zigzag 5s linear infinite;
+      text-shadow: 0 0 15px lime;
+    }
+    @keyframes zigzag {
+      0% { transform: translateX(0); }
+      25% { transform: translateX(50px); }
+      50% { transform: translateX(-50px); }
+      75% { transform: translateX(50px); }
+      100% { transform: translateX(0); }
+    }
+    #scoreboard {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      background: rgba(0,0,0,0.6);
+      color: #0ff;
+      padding: 12px 18px;
+      border: 2px solid #0ff;
+      border-radius: 12px;
+      font-size: 18px;
+      box-shadow: 0 0 15px #0ff;
+      z-index: 10;
+    }
+    #scoreboard span {
+      display: block;
+      margin-top: 6px;
+    }
+    #gameOver {
+      display: none;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: rgba(0,0,0,0.8);
+      color: red;
+      font-size: 36px;
+      padding: 20px;
+      border: 2px solid red;
+      border-radius: 10px;
+      text-align: center;
+      z-index: 11;
+    }
+    #restartBtn {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      background: #222;
+      color: #0ff;
+      border: 2px solid #0ff;
+      border-radius: 8px;
+    }
+    #restartBtn:hover {
+      background: #0ff;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <div id="scoreboard">
+    🧮 Σκορ: <span id="points">0</span>
+    🪐 Επίπεδο: <span id="level">1</span>
+    🏆 Καλύτερο: <span id="best">5</span>
+  </div>
+
+  <div id="game">
+    <div id="ship">
+      <img src="tiefighter.gif" alt="Spaceship">
+    </div>
+    <div id="gameOver">
+      💀 GAME OVER 💀<br />
+      <button id="restartBtn">Ξεκίνα Ξανά</button>
+    </div>
+  </div>
+
+  <script>
+    const ship = document.getElementById("ship");
+    const game = document.getElementById("game");
+    const scoreEl = document.getElementById("points");
+    const levelEl = document.getElementById("level");
+    const bestEl = document.getElementById("best");
+    const gameOverEl = document.getElementById("gameOver");
+    const restartBtn = document.getElementById("restartBtn");
+
+    let shipX = window.innerWidth / 2;
+    let score = 0;
+    let bestScore = localStorage.getItem("best") || 0;
+    let gameRunning = true;
+    let lastShotTime = 0;
+    const laserCooldown = 150; 
+
+    const backgrounds = ['SPACE_BG_1.jpg', 'SPACE_BG_2.jpg', 'SPACE_BG_3.jpg', 'SPACE_BG_4.jpg'];
+    let currentLevel = -1;
+
+    function updateBackground() {
+      const newLevel = Math.floor(score / 25);
+      if (newLevel !== currentLevel) {
+        currentLevel = newLevel;
+        game.style.backgroundImage = `url('${backgrounds[currentLevel % backgrounds.length]}')`;
+        levelEl.textContent = currentLevel + 1;
+      }
+    }
+
+    function updateScoreboard() {
+      scoreEl.textContent = score;
+      if (score > bestScore) {
+        bestScore = score;
+        localStorage.setItem("best", bestScore);
+      }
+      bestEl.textContent = bestScore;
+      updateBackground();
+    }
+
+    function updateShipPosition() {
+      ship.style.left = `${shipX}px`;
+    }
+
+    function fireLaser() {
+      const now = Date.now();
+      if (now - lastShotTime < laserCooldown) return;
+      lastShotTime = now;
+
+      const bullet = document.createElement("div");
+      bullet.className = "bullet";
+      bullet.style.left = (shipX + 25) + "px";
+      bullet.style.bottom = "60px";
+      game.appendChild(bullet);
+
+      const interval = setInterval(() => {
+        let currentBottom = parseInt(bullet.style.bottom);
+        if (currentBottom > window.innerHeight) {
+          bullet.remove();
+          clearInterval(interval);
+          return;
+        }
+
+        bullet.style.bottom = (currentBottom + 15) + "px"; 
+
+        const bRect = bullet.getBoundingClientRect();
+        document.querySelectorAll(".alien").forEach(alien => {
+          const aRect = alien.getBoundingClientRect();
+          if (
+            bRect.left < aRect.right &&
+            bRect.right > aRect.left &&
+            bRect.top < aRect.bottom &&
+            bRect.bottom > aRect.top
+          ) {
+            bullet.remove();
+            alien.remove();
+            clearInterval(interval);
+            score++;
+            updateScoreboard();
+          }
+        });
+      }, 16);
+    }
+
+    function spawnAlien() {
+      if (!gameRunning) return;
+
+      const alien = document.createElement("div");
+      alien.className = "alien";
+      alien.textContent = "👽";
+      alien.style.left = Math.random() * (window.innerWidth - 60) + "px";
+      alien.style.top = "0px";
+      game.appendChild(alien);
+
+      let y = 0;
+      const interval = setInterval(() => {
+        if (!game.contains(alien)) {
+          clearInterval(interval);
+          return;
+        }
+
+        y += 2;
+        alien.style.top = y + "px";
+
+        const alienRect = alien.getBoundingClientRect();
+        const shipRect = ship.getBoundingClientRect();
+
+        if (
+          shipRect.left < alienRect.right &&
+          shipRect.right > alienRect.left &&
+          shipRect.top < alienRect.bottom &&
+          shipRect.bottom > alienRect.top
+        ) {
+          alien.remove();
+          clearInterval(interval);
+          score--;
+          updateScoreboard();
+          if (score <= 0) handleGameOver();
+        }
+
+        if (y > window.innerHeight) {
+          alien.remove();
+          clearInterval(interval);
+        }
+      }, 20);
+    }
+
+    function handleGameOver() {
+      gameRunning = false;
+      gameOverEl.style.display = "block";
+      document.querySelectorAll(".alien, .bullet").forEach(el => el.remove());
+    }
+
+    function restartGame() {
+      score = 5;
+      gameRunning = true;
+      currentLevel = -1;
+      gameOverEl.style.display = "none";
+      updateScoreboard();
+      document.querySelectorAll(".alien, .bullet").forEach(el => el.remove());
+    }
+
+    document.addEventListener("keydown", e => {
+      if (!gameRunning) return;
+
+      if (e.key === "ArrowLeft" || e.key === "a") {
+        shipX -= 50;
+      } else if (e.key === "ArrowRight" || e.key === "d") {
+        shipX += 50;
+      } else if (e.key === " " || e.key === "ArrowUp") {
+        fireLaser();
+      }
+
+      shipX = Math.max(0, Math.min(window.innerWidth - 60, shipX));
+      updateShipPosition();
+    });
+
+    restartBtn.addEventListener("click", restartGame);
+    
+    bestEl.textContent = bestScore;
+    updateShipPosition();
+    updateScoreboard();
+    setInterval(spawnAlien, 1100); 
+  </script>
+</body>
+</html>

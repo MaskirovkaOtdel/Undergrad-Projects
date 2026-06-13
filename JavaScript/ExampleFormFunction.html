@@ -1,0 +1,33 @@
+<!Doctype html>
+<html lang="el">
+<head>
+	<meta charset="UTF-8">
+<title></title>
+</head>
+<body>
+<h2>Example Multification</h2>
+
+<br>Provide number 1: <br>
+<input type="number" id="num1"><br>
+<br>Provide number 2: <br>
+<input type="number" id="num2"><br>
+<button onclick="multi()">Example Function/Feature</button>
+
+<p id="result"></p>
+
+<script>
+function multi() {
+
+let output=document.getElementById("result");
+
+a=document.getElementById("num1").value;
+
+b=document.getElementById("num2").value;
+
+apot=a*b;
+
+output.innerText=`The sum of numbers '${a}' and '${b}' is: ${apot}`;
+}
+</script>
+</body>
+</html>

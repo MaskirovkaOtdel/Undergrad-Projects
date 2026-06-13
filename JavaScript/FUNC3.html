@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Numbers</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            padding: 20px;
+        }
+
+        h2 {
+            color: #00bcd4;
+        }
+
+        p {
+            font-size: 1.2em;
+            margin: 10px 0;
+        }
+    
+        .container {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            display: inline-block;
+            width: 60%;
+        }
+     
+        button {
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        button:hover {
+            background-color: #008c9e;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Random Numbers</h2>
+        <p id="rand"></p>
+		
+		<h2>Jackpot Number</h2>
+        <p id="rand"></p>
+        
+        <h2>Max Number</h2>
+        <p id="max"></p>
+        
+        <h2>Min Number</h2>
+        <p id="min"></p>
+
+        <button onclick="RandomNumbers()">Generate Again</button>
+    </div>
+
+    <script>
+        function RandomNumbers() {
+            let num1 = Math.floor(Math.random() * 100) + 1;
+            let num2 = Math.floor(Math.random() * 100) + 1;
+            let num3 = Math.floor(Math.random() * 100) + 1;
+			let num4 = Math.floor(Math.random() * 100) + 1;
+			let num5 = Math.floor(Math.random() * 100) + 1;
+			let num6 = Math.floor(Math.random() * 100) + 1;
+			let num7 = Math.floor(Math.random() * 100) + 1;
+			let jnum1 = Math.floor(Math.random() * 100) + 1;
+			
+            let numbers = [num1, num2, num3, num4, num5, num6, num7];
+			let jackpot_numbers = [jnum1];
+			
+            let minNum = Math.min(...numbers);
+            let maxNum = Math.max(...numbers);
+
+			document.getElementById("
+            document.getElementById("rand").textContent = `Numbers: ${numbers.join(", ")}`;
+            document.getElementById("max").textContent = `Max: ${maxNum}`;
+            document.getElementById("min").textContent = `Min: ${minNum}`;
+        }
+
+        generateRandomNumbers();
+    </script>
+</body>
+</html>

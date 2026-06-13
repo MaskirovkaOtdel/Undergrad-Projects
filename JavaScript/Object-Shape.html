@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shape Type Recognition</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f9;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      width: 100%;
+      height: 100vh;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .box {
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      width: 300px;
+    }
+    h1 {
+      font-size: 24px;
+      color: #333;
+    }
+    h2 {
+      font-size: 18px;
+      color: #666;
+    }
+    label {
+      font-size: 14px;
+      display: block;
+      margin-bottom: 10px;
+    }
+    input[type="number"] {
+      padding: 5px;
+      font-size: 14px;
+      width: 100%;
+      margin-bottom: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #4CAF50;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="box">
+      <h1>Shape Type Recognition</h1>
+      <h2>Dimensions of Shape</h2>
+	  
+      <label for="width">Shape Width</label>
+      <input type="number" id="width" placeholder="Enter width" required>
+      <br>
+      <label for="length">Shape Length</label>
+      <input type="number" id="length" placeholder="Enter length" required>
+      <br>
+      <label for="height">Shape Height (Optional)</label>
+      <input type="number" id="height" placeholder="Enter height" optional>
+      <br><br>
+		
+      <button onclick="recognizeShape()">Recognize Shape</button>
+      <div class="result" id="result"></div>
+    </div>
+  </div>
+	
+  <script>
+    function recognizeShape() {
+      const width = parseFloat(document.getElementById("width").value);
+      const length = parseFloat(document.getElementById("length").value);
+      const height = parseFloat(document.getElementById("height").value);
+
+      if (!isNaN(width) && !isNaN(length) && width > 0 && length > 0) {
+        let shapeType = "";
+        let resultText = "";
+		
+        
+        if (!isNaN(height) && height > 0) {
+          
+          if (width === length) {
+            shapeType = "Cube";
+            const volume = width * length * height;
+            resultText = `Shape: ${shapeType}\n The volume of the cube is: ${volume} cubic units.`;
+          } else {
+            shapeType = "Invalid dimensions for a Cube (width and length must be equal)";
+            resultText = shapeType;
+          }
+        } else {
+          
+          if (width === length) {
+            shapeType = "Square";
+            const area = width * length;
+            resultText = `Shape: ${shapeType}\n The area of the square is: ${area} square units.`;
+          } else {
+            shapeType = "Rectangle";
+            const area = width * length;
+            resultText = `Shape: ${shapeType}\n The area of the rectangle is: ${area} square units.`;
+          }
+        }
+
+        document.getElementById("result").textContent = resultText;
+      } else {
+        document.getElementById("result").textContent = "Please enter valid dimensions.";
+      }
+    }
+  </script>
+</body>
+</html>

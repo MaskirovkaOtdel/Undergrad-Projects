@@ -1,0 +1,29 @@
+<!Doctype html>
+<html lang="el">
+<head>
+	<title>Variables in JavaScript</title>
+</head>
+<body>
+</body>
+<h1>Javascript Strings</h1>
+<p>In the Following we're seeing an example where tags are used
+ inside a alphanumeric string, providing they do not match with the tags that surround
+ the alphanumeric string itself.</p>
+ <p id="varpar3"></p>
+<script>
+	let name = "My name is Python";
+	let x = "the name is Python";
+	let y = "the name is Python";
+	document.getElementById("varpar3").innerHTML =
+	name + "<br>" + y + "<br>" + x;
+	
+	document.getElementById("varpar3").innerHTML =
+	`${name} <br> ${y} <br> ${x}`;
+	
+	//document.getElementById("varpar3").innerHTML =
+	//`${name}`; 
+	//`${y}`;
+	//`${x}`;
+	//`${z}`;
+	</script>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Find Maximum Number</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: #fff;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 12px;
+            width: 400px;
+            text-align: center;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input {
+            padding: 12px;
+            font-size: 16px;
+            border: none;
+            border-radius: 8px;
+            outline: none;
+            margin-bottom: 15px;
+            transition: 0.3s ease;
+            text-align: center;
+        }
+
+        input:focus {
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
+        }
+
+        button {
+            background: #ff4b5c;
+            color: #fff;
+            border: none;
+            padding: 12px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background: #ff3b4a;
+            transform: scale(1.05);
+        }
+
+        #result {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: 400;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Find Maximum Number</h2>
+        <form onsubmit="event.preventDefault(); generateNumbers();">
+            <input type="number" id="countInput" min="1" placeholder="How many numbers to generate?">
+            <button type="submit">Generate & Find Maximum</button>
+        </form>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        function generateNumbers() {   //maximum possible amount of numbers is 219.649 - 
+            let count = parseInt(document.getElementById("countInput").value);
+
+            if (isNaN(count) || count <= 0) {
+                document.getElementById("result").innerHTML = "⚠️ Please enter a valid number.";
+                return;
+            }
+
+            let numbers = Array.from({ length: count }, () => Math.floor(Math.random() * 101));
+			let minNumber = Math.min(...numbers);
+            let maxNumber = Math.max(...numbers);
+
+            document.getElementById("result").innerHTML = `
+                <p><strong>Generated Numbers:</strong> ${numbers.join(', ')}</p>
+                <p><strong>Maximum Number:</strong> ${maxNumber} 🚀</p>
+				<p><strong>Minimum Number:</strong> ${minNumber} 🚀</p>
+            `;
+        }
+    </script>
+
+</body>
+</html>

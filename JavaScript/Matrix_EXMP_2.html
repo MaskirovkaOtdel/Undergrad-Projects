@@ -1,0 +1,30 @@
+<!Doctype html>
+<html>
+<head>
+<title>Fruit Table</title>
+</head>
+
+<body>
+<h2>Fruit Table</h2>
+<table border="1" id="fruitTable">
+<tr>
+	<th>Fruits</th>
+</tr>
+</table>
+
+<script>
+	let fruits = ["Apple", "Banana", "Orange", "Cherry"];
+	
+	fruits.shift();
+	fruits.pop();
+	
+	const table = document.getElementById("fruitTable");
+	
+	fruits.forEach(fruit => {
+	let row = table.insertRow(0);
+	let cell = row.insertCell(0);
+	cell.textContent = fruit;
+	});
+</script>
+</body>
+</html>

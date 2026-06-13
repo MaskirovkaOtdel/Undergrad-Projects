@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Alphanumeric Methods</title>
+</head>
+<body>
+<script>
+let text = "JavaScript is Awsome!(Totally not gunpointed!)";
+
+// Usage of different alphanumeric methods
+let length = text.length;
+let upper = text.toUpperCase();
+let lower = text.toLowerCase();
+let trimmed = text.trim();
+let firstChar = text.charAt(2);
+let wordExists = text.includes("wonderful"); 
+let replacedText = text.replace("wonderful", "fantastic");
+let sliced = text.slice(2, 12);
+let splitWords = text.trim().split(" ");
+
+document.write(`
+	Initial Text: "${text}" <br>
+	Length: "${length}" <br>
+	Upper: "${upper}" <br>
+	LowCap: "${lower}" <br>
+	No Blank: "${trimmed}" <br>
+	Character at slot 2: ${firstChar} <br>
+	Includes "wonderful": ${wordExists} <br>
+	Replace word: ${replacedText} <br>
+	Attachment (slice 2-12): "${sliced}" <br>
+	Separate words: ${splitWords} <br>`);
+</script>
+</body>
+</html>

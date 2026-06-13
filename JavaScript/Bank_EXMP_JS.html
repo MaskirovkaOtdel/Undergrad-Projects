@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Bank Account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    h2 {
+      margin-top: 0;
+    }
+
+    #transactions {
+      margin-top: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #f2f2f2;
+    }
+
+    .btn {
+      padding: 10px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .deposit {
+      background-color: #007bff;
+      color: white;
+    }
+
+    .withdraw {
+      background-color: #28a745;
+      color: white;
+    }
+
+    #balance {
+      font-weight: bold;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Bank Account 💳</h2>
+
+  <label for="amount">Amount:</label>
+  <input type="number" id="amount" placeholder="Enter amount">
+  <button class="btn deposit" onclick="makeTransaction('Deposit')">Deposit</button>
+  <button class="btn withdraw" onclick="makeTransaction('Withdraw')">Withdraw</button>
+
+  <div id="transactions">
+    <h3>Transactions 🧾</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>Amount (€)</th>
+          <th>Date</th>
+        </tr>
+      </thead>
+      <tbody id="transactionBody">
+      </tbody>
+    </table>
+  </div>
+
+  <div id="balance">Balance: 0.00€</div>
+
+  <script>
+    let balance = 0;
+
+    function makeTransaction(type) {
+      const amountInput = document.getElementById("amount");
+      const amount = parseFloat(amountInput.value);
+
+      if (isNaN(amount) || amount <= 0) {
+        alert("Please enter a valid amount.");
+        return;
+      }
+
+      if (type === "Withdraw" && amount > balance) {
+        alert("Insufficient balance.");
+        return;
+      }
+
+      if (type === "Deposit") {
+        balance += amount;
+      } else if (type === "Withdraw") {
+        balance -= amount;
+      }
+
+      updateBalance();
+      addTransaction(type, amount);
+      amountInput.value = "";
+    }
+
+    function updateBalance() {
+      document.getElementById("balance").textContent = `Balance: ${balance.toFixed(2)}€`;
+    }
+
+    function addTransaction(type, amount) {
+      const table = document.getElementById("transactionBody");
+      const row = table.insertRow(0);
+      const cellType = row.insertCell(0);
+      const cellAmount = row.insertCell(1);
+      const cellDate = row.insertCell(2);
+
+      const now = new Date();
+      const dateStr = now.toLocaleString("el-GR");
+
+      cellType.textContent = type;
+      cellAmount.textContent = amount.toFixed(2);
+      cellDate.textContent = dateStr;
+    }
+  </script>
+</body>
+</html>

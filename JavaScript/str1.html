@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Tel Length Calculation</title>
+</head>
+<body>
+	<h2>Telephone Length Calculation</h2>
+	<form onsubmit="return calculateTelLength()">
+		<label for="Tel1">Enter Telephone</label>
+		<input type="tel" id="Tel1" name="phone" pattern="[0-9]{3}-[0-9]{4}-[0-9]{3}" placeholder="012-3456-789" required>
+		<br>
+		<button type="submit">Phone Length</button>
+	</form>
+	<p id="Format"></p>
+	
+	<script>
+		function calculateTelLength() {
+		
+			event.preventDefault();
+			
+			let Tel = document.getElementById("Tel1").value;
+
+			let phoneDigits = Tel.replace(/\D/g, '');
+
+			let phoneLength = phoneDigits.length;
+
+			document.getElementById("Format").innerText = "Phone number length: " + phoneLength;
+			
+			return false;
+		}
+	</script>
+</body>
+</html>
+

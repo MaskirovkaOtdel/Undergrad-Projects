@@ -1,0 +1,17 @@
+<!Doctype html>
+<html>
+<head><title>Dom Example 3</title></head>
+<body>
+<img id="image" src="photo1.jpg" alt="First"><br>
+<button onclick="changephoto()">Change Image</button>
+	
+	<script>
+	function changephoto() {
+	let img = document.getElementById("image");
+	img.setAttribute("src","photo2.jpg");
+	img.setAttribute("alt","second image");
+	alert(`The etiquete ALT is: ${img.getAttribute("alt")}`);
+	}
+	</script>
+	</body>
+	</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Availability</title>
+    <style>
+	* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #fff;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: #1f1f1f;
+    padding: 2rem;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 600px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+input, select {
+    width: 100%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    border: 1px solid #333;
+    background-color: #333;
+    color: #fff;
+}
+
+button {
+    width: 100%;
+    padding: 0.8rem;
+    background-color: #3a9e67;
+    color: #fff;
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #339b5c;
+}
+
+.product-list {
+    margin-top: 2rem;
+}
+
+.product-list ul {
+    list-style-type: none;
+}
+
+.product-list li {
+    background-color: #2c2c2c;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.status-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-left: 10px;
+}
+
+.available {
+    background-color: green;
+}
+
+.unavailable {
+    background-color: red;
+}
+
+.inRestock {
+    background-color: yellow;
+    border: 1px solid #333;
+}
+
+.product-list li span {
+    font-size: 1.2rem;
+}
+
+	</style>
+</head>
+<body>
+    <div class="container">
+        <h1>Product Stock Availability</h1>
+        
+        
+        <form id="stockForm">
+            <div class="form-group">
+                <label for="productName">Product Name:</label>
+                <input type="text" id="productName" required>
+            </div>
+            <div class="form-group">
+                <label for="productPrice">Price ($):</label>
+                <input type="number" id="productPrice" required>
+            </div>
+            <div class="form-group">
+                <label for="status">Status:</label>
+                <select id="status">
+                    <option value="available">Available</option>
+                    <option value="unavailable">Unavailable</option>
+                    <option value="inRestock">In Restock</option>
+                </select>
+            </div>
+            <button type="submit" class="btn">Add Product</button>
+        </form>
+        
+        <div class="product-list">
+            <h2>Product Registry</h2>
+            <ul id="productList"></ul>
+        </div>
+    </div>
+
+    <script>
+	document.getElementById("stockForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+    
+    
+    const productName = document.getElementById("productName").value;
+    const productPrice = document.getElementById("productPrice").value;
+    const status = document.getElementById("status").value;
+    
+    if (productName && productPrice) {
+        addProductToList(productName, productPrice, status);
+    }
+});
+
+function addProductToList(name, price, status) {
+    const productList = document.getElementById("productList");
+
+    const li = document.createElement("li");
+
+    const statusDot = document.createElement("div");
+    statusDot.classList.add("status-dot", status);
+
+    const productInfo = document.createElement("span");
+    productInfo.textContent = `${name} - $${price}`;
+
+    li.appendChild(productInfo);
+    li.appendChild(statusDot);
+
+    productList.appendChild(li);
+
+    
+    document.getElementById("stockForm").reset();
+}
+
+	</script>
+</body>
+</html>

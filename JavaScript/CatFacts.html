@@ -1,0 +1,8 @@
+<script>
+fetch("https://catfact.ninja/fact")
+	.then(response => response.json())
+	.then(data => {
+		document.write(`<b>Facts about Cats:</b> ${data.fact}`);
+	})
+	.catch(error => console.error("Error:", error));
+</script>

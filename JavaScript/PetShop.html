@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pet Shop Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      padding: 20px;
+    }
+
+    table {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      max-width: 550px;
+      margin: auto;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+	h1 {
+	  color: blue;
+	}
+	
+    h2 {
+      color: #333;
+    }
+
+    .section {
+      margin-bottom: 15px;
+    }
+
+    label {
+      display: block;
+      margin: 8px 0;
+    }
+
+    button {
+      background: #4CAF50;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #45a049;
+    }
+  </style>
+</head>
+<body>
+
+  <table>
+    <tr>
+      <td valign="top">
+        <form id="petForm">
+		  <h1>🐾Pet Shop - Order Creation🐾</h1>
+          <h2>🙍 ‍♂️User Info: </h2>
+          <label>
+            Name: <input type="text" id="username" required>
+          </label>
+          <br>
+
+          <h2>🐶🐱 Pet Selection: </h2>
+          <label><input type="radio" name="pet" value="Dog"> 🐶 Dog</label><br>
+          <label><input type="radio" name="pet" value="Cat"> 🐱 Cat</label><br>
+
+          <h2>🛒 Products: </h2>
+          <label><input type="checkbox" value="Bone"> 🦴 Bone</label><br>
+          <label><input type="checkbox" value="Shampoo"> 🧴 Shampoo</label><br>
+          <label><input type="checkbox" value="Treat"> 🍖 Treat</label><br>
+
+          <button type="submit">Submit</button>
+        </form>
+      </td>
+    </tr>
+	<tr>
+		<td valign="top" style="padding: 40px;">
+        <div align="center" id="summary" style="display: none;">
+          <h3>📋 Summary</h3>
+          <p id="userSummary"></p>
+          <p id="petSummary"></p>
+          <p id="productSummary"></p>
+          <p id="totalSummary"></p>
+          <button onclick="hideSummary()">Hide Summary</button>
+        </div>
+		</td>
+    </tr>
+  </table>
+
+  <script>
+    const prices = {
+      Bone: 8,
+      Shampoo: 16,
+      Treat: 14
+    };
+
+    document.querySelector("#petForm").addEventListener("submit", function(event) {
+      event.preventDefault();
+
+      const username = document.querySelector("#username").value.trim();
+      const selectedPet = document.querySelector("input[name='pet']:checked");
+      const selectedProducts = document.querySelectorAll("input[type='checkbox']:checked");
+
+      const petValue = selectedPet ? selectedPet.value : "No pet selected";
+      const productList = Array.from(selectedProducts).map(p => p.value);
+
+      let productLines = "";
+      let total = 0;
+
+      if (productList.length > 0) {
+        productLines = productList.map(item => {
+          total += prices[item];
+          return `• ${item} - ${prices[item]}€`;
+        }).join("<br>");
+      } else {
+        productLines = "No products selected";
+      }
+
+      
+      document.getElementById("userSummary").innerHTML = `<b>User:</b> ${username}`;
+      document.getElementById("petSummary").innerHTML = `<b>Pet:</b> ${petValue}`;
+      document.getElementById("productSummary").innerHTML = `<b>Products:</b><br>${productLines}`;
+      document.getElementById("totalSummary").innerHTML = `<b>Total:</b> ${total}€`;
+
+      
+      document.getElementById("summary").style.display = "block";
+    });
+
+    function hideSummary() {
+      document.getElementById("summary").style.display = "none";
+    }
+  </script>
+
+</body>
+</html>

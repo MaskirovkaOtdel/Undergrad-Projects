@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Income Calculation</title>
+</head>
+<body>
+
+    <h2>Income Classification</h2>
+    
+    <label for="income">Enter Annual Income (€): </label>
+    <input type="number" id="income" placeholder="Enter amount">
+    <button onclick="Income()">Check Category</button>
+    
+    <p id="result"></p>
+
+    <script>
+        function Income() {
+            let income = parseFloat(document.getElementById("income").value);
+            let category;
+
+            switch (true) {
+                case (income < 20000):
+                    category = "Low-Income";
+                    break;
+                case (income >= 20000 && income < 40000):
+                    category = "Medium-Income";
+                    break;
+                case (income >= 40000):
+                    category = "High-Income";
+                    break;
+                default:
+                    category = "Invalid input";
+            }
+
+            document.getElementById("result").innerText = "Income Category: " + category;
+        }
+    </script>
+
+</body>
+</html>

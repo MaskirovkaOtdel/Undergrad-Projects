@@ -1,0 +1,22 @@
+<!Doctype html>
+<html>
+<head>
+<title>DOM Example</title>
+</head>
+<body>
+	<h1>DOM Example 1</h1>
+	<div id="info" class="box">Hello World!</div>
+	<button onclick="changeText()">Change</button>
+	<script>
+	
+	function changeText() {
+	let text=document.getElementById("info");
+	text.innerHTML="<strong>Text Change!</strong>";
+	text.style.color="blue";
+	text.style.fontSize="24px";
+	text.className="new-box";
+	text.id="updated";
+	}
+	</script>
+	</body>
+	</html>

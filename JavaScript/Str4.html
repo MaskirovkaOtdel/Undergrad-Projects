@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Password Generation</title>
+	<style>
+		body, h2, p, label {
+			margin: 0;
+			padding: 0;
+			font-family: 'Arial', sans-serif;
+		}
+	
+		body {
+			background-color: #f4f7fc;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			height: 100vh;
+			color: #333;
+			font-size: 16px;
+		}
+	
+		.container {
+			background-color: white;
+			padding: 40px;
+			border: 2px solid #4CAF50;
+			border-radius: 10px;
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+			width: 100%;
+			max-width: 450px;
+			text-align: center;
+		}
+
+		h2 {
+			margin-bottom: 25px;
+			color: #4CAF50;
+			font-size: 24px;
+			font-weight: 600;
+		}
+
+		label {
+			display: block;
+			font-size: 16px;
+			margin-bottom: 10px;
+			font-weight: 500;
+		}
+	
+		#PG1 {
+			width: 100%;
+			padding: 14px;
+			font-size: 16px;
+			border: 2px solid #ddd;
+			border-radius: 8px;
+			margin-bottom: 20px;
+			box-sizing: border-box;
+			transition: border 0.3s ease;
+		}
+
+		#PG1:focus {
+			border-color: #4CAF50;
+			outline: none;
+		}
+	
+		button {
+			width: 100%;
+			padding: 14px;
+			background-color: #4CAF50;
+			color: white;
+			border: none;
+			border-radius: 8px;
+			font-size: 16px;
+			cursor: pointer;
+			transition: background-color 0.3s ease, transform 0.2s ease;
+		}
+
+		button:hover {
+			background-color: #45a049;
+			transform: scale(1.05);
+		}
+		
+		#PassGen {
+			margin-top: 20px;
+			font-size: 18px;
+			font-weight: bold;
+			color: #333;
+			padding: 10px;
+			background-color: #f1f1f1;
+			border-radius: 4px;
+			border: 1px solid #ddd;
+			display: inline-block;
+			width: 100%;
+		}
+
+		#loading {
+			display: none;
+			color: #4CAF50;
+			font-size: 18px;
+			margin-top: 15px;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<h2>Password Generator</h2>
+		<form id="passwordForm">
+			<label for="PG1">Enter String for Password Generation</label>
+			<input type="text" id="PG1" name="string" placeholder="Example" required>
+			<button type="submit">Generate Password</button>
+		</form>
+		<p id="loading">Generating...</p>
+		<p id="PassGen"></p>
+	</div>
+
+	<script>
+	
+	const form = document.getElementById('passwordForm');
+	const inputField = document.getElementById('PG1');
+	const resultField = document.getElementById('PassGen');
+	const loadingIndicator = document.getElementById('loading');
+
+	form.addEventListener('submit', function(event) {
+		event.preventDefault();
+		loadingIndicator.style.display = 'block';
+		resultField.textContent = ''; 
+
+		const str = inputField.value.trim();
+		
+		if (!str) {
+			resultField.textContent = 'Please enter a valid string.';
+			loadingIndicator.style.display = 'none'; 
+			return;
+		}
+	
+		setTimeout(() => {
+			const password = generatePassword(str);
+			resultField.textContent = 'Generated Password: ' + password;
+			loadingIndicator.style.display = 'none'; 
+		}, 500);
+	});
+	
+	function generatePassword(str) {
+		
+		if (str.length < 3) {
+			return 'String too short for password generation. Try a longer input.';
+		}
+	
+		const firstChar = str[0];
+		const lastChar = str[str.length - 1];
+		const middleChar = str[Math.floor(str.length / 2)];
+
+		
+		const randomCharacter = getRandomCharFromString(str);
+
+		
+		const password = `${firstChar}${middleChar}${randomCharacter}${lastChar}`;
+
+		return password;
+	}
+
+	
+	function getRandomCharFromString(str) {
+		const randomIndex = Math.floor(Math.random() * str.length);
+		return str[randomIndex];
+	}
+</script>
+
+</body>
+</html>
+
+

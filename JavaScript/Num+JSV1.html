@@ -1,0 +1,163 @@
+<!Doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Math Formulas</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 50px;
+		}
+		h2 {
+			color: #333;
+		}
+		.formula {
+			font-family: "Courier New", Courier, monospace;
+			font-size: 18px;
+			margin-bottom: 10px;
+		}
+		#result {
+			margin-top: 10px;
+			font-size: 18px;
+			font-weight: bold;
+		}
+		#formulas {
+			margin-top: 30px;
+		}
+	</style>
+</head>
+<body>
+	<h2>Sum Calculation</h2>
+	<form onsubmit="calculateSum(event)">
+		<label for="num1">Enter first number</label>
+		<input type="number" id="num1" required>
+		<br>
+		<label for="num2">Enter second number</label>
+		<input type="number" id="num2" required>
+		<br>
+		<button type="submit">Calculate Sum</button>
+	</form>
+
+	<p id="result"></p>
+
+	<h2>Solve an Elementary Equation type ax + b = 0</h2>
+	<label for="a">Enter a (coefficient of x):</label>
+	<input type="number" id="a" placeholder="Enter a">
+	<br><br>
+	<label for="b">Enter b (constant term):</label>
+	<input type="number" id="b" placeholder="Enter b">
+	<br><br>
+	<button type="button" onclick="solveEquation()">Solve</button>
+
+	<p id="Equation"></p>
+
+	<h2>Useful Math Formulas</h2>
+	<div id="formulas"></div>
+
+	<script>
+		// Function to dynamically insert the formulas into the page
+		function loadFormulas() {
+			const formulas = {
+				'Algebra': [
+					'Quadratic Formula: x = (-b ± √(b² - 4ac)) / 2a',
+					'Sum of Arithmetic Series: S = (n/2)(a₁ + aₙ)',
+					'Difference of Squares: a² - b² = (a - b)(a + b)',
+					'Binomial Expansion: (a + b)ⁿ = Σ (n C k) a^(n-k) b^k'
+				],
+				'Geometry': [
+					'Area of a Circle: A = πr²',
+					'Circumference of a Circle: C = 2πr',
+					'Pythagorean Theorem: a² + b² = c²',
+					'Volume of a Sphere: V = (4/3)πr³',
+					'Area of Triangle: A = ½bh'
+				],
+				'Trigonometry': [
+					'Pythagorean Identity: sin²(θ) + cos²(θ) = 1',
+					'Sine Rule: a/sin(A) = b/sin(B) = c/sin(C)',
+					'Cosine Rule: c² = a² + b² - 2ab * cos(C)',
+					'Area of a Triangle (Trigonometric Formula): A = ½ab sin(C)'
+				],
+				'Calculus': [
+					'Derivative of Power Function: d/dx(xⁿ) = n * x^(n-1)',
+					'Integral of xⁿ: ∫xⁿ dx = (xⁿ⁺¹)/(n+1) + C (n ≠ -1)',
+					'Chain Rule: d/dx[f(g(x))] = f\'(g(x)) * g\'(x)',
+					'Product Rule: d/dx[uv] = u\'v + uv\'',
+					'Quotient Rule: d/dx[u/v] = (v * u\' - u * v\') / v²'
+				],
+				'Statistics': [
+					'Mean (Average): μ = Σx / n',
+					'Variance: σ² = Σ(x - μ)² / n',
+					'Standard Deviation: σ = √σ²',
+					'Pearson Correlation Coefficient: r = Σ(x - μₓ)(y - μᵧ) / √Σ(x - μₓ)² Σ(y - μᵧ)²'
+				],
+				'Probability': [
+					'Probability of Event A: P(A) = Number of favorable outcomes / Total outcomes',
+					'Complementary Probability: P(A') = 1 - P(A)',
+					'Addition Rule (for mutually exclusive events): P(A ∪ B) = P(A) + P(B)',
+					'Multiplication Rule: P(A ∩ B) = P(A) * P(B | A)',
+					'Bayes’ Theorem: P(A | B) = (P(B | A) * P(A)) / P(B)'
+				],
+				'Linear Algebra': [
+					'Matrix Determinant (2x2): det(A) = ad - bc (where A = [a b; c d])',
+					'Inverse of Matrix A: A⁻¹ = 1/det(A) * adj(A)',
+					'Dot Product of Vectors: a·b = a₁b₁ + a₂b₂ + ... + anbn',
+					'Cross Product of Vectors: a × b = (a₂b₃ - a₃b₂, a₃b₁ - a₁b₃, a₁b₂ - a₂b₁)'
+				],
+				'Set Theory': [
+				'Union of Sets: A ∪ B = {x | x ∈ A or x ∈ B}',
+					'Intersection of Sets: A ∩ B = {x | x ∈ A and x ∈ B}',
+					'Complement of a Set: A\' = {x | x ∉ A}',
+					'Cardinality of a Set: |A| = Number of elements in set A'
+				]
+			};
+
+			let formulasHtml = '';
+
+			for (let category in formulas) {
+				formulasHtml += `<h3>${category}</h3>`;
+				formulas[category].forEach(formula => {
+					formulasHtml += `<p class="formula">${formula}</p>`;
+				});
+			}
+
+			document.getElementById('formulas').innerHTML = formulasHtml;
+		}
+
+		// Call the function to load formulas when the page is loaded
+		window.onload = loadFormulas;
+
+		// Sum Calculation Function
+		function calculateSum(event) {
+			event.preventDefault();
+
+			let num1 = parseFloat(document.getElementById("num1").value);
+			let num2 = parseFloat(document.getElementById("num2").value);
+
+			let sum = num1 + num2;
+
+			document.getElementById("result").innerText = "Sum: " + sum;
+		}
+
+		// Solve Equation Function
+		function solveEquation() {
+			// Get the values of 'a' and 'b' from user input
+			let a = parseFloat(document.getElementById("a").value);
+			let b = parseFloat(document.getElementById("b").value);
+
+			// Check if 'a' is zero to avoid division by zero
+			if (a === 0) {
+				if (b === 0) {
+					alert("The equation has infinite solutions.");
+				} else {
+					alert("The equation has no solution.");
+				}
+			} else {
+				// Solve the equation ax + b = 0
+				let x = -b / a;
+				document.getElementById("Equation").innerText = "Equation Solution is: x = " + x;
+			}
+		}
+	</script>
+</body>
+</html>

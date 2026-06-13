@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Script Examples Onclick</title>
+  <style>
+	body {
+      font-family: Arial, sans-serif;
+	  font-weight: bold;
+	  text-align: center;
+	  padding: 50px;
+	  background-color: #f9f9f9;
+    }
+	button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #4CAF80;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+	
+  </style>
+</head>
+
+<body>
+
+<button onclick="sayHi()">Say Hi</button>
+
+<p id="text">Press the button to change</p>
+
+<button onclick="changeText()">Change</button>
+
+</body>
+
+
+<script>
+	function sayHi() {
+	alert("Welcome! I am John Fortnite and I ned 1 mil Vbucks!! Pls giv me ur mom's credit card. Thenk!");
+	}
+	
+	function changeText(){
+		document.getElementById("text").innerText="the text changed";
+	}
+</script>	
+
+</html>

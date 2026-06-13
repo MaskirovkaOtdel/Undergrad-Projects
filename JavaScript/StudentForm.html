@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information</title>
+</head>
+<body>
+
+<h2>Student Tab</h2>
+
+<label for="name">Name:</label>
+<input type="text" id="name"><br><br>
+
+<label for="surname">Surname:</label>
+<input type="text" id="surname"><br><br>
+
+<label for="phone">Phone:</label>
+<input type="text" id="phone"><br><br>
+
+<label for="registryNumber">Registry Number:</label>
+<input type="text" id="registryNumber"><br><br>
+
+<button onclick="displayStudentInfo()">Submit</button>
+
+<h3>Student Information:</h3>
+<div id="studentInfo"></div>
+
+<script>
+function displayStudentInfo() {
+  
+  const inputs = ['name', 'surname', 'phone', 'registryNumber'];
+  const student = {};
+
+  
+  for (let id of inputs) {
+    student[id] = document.getElementById(id).value.trim();
+  }
+
+  
+  if (Object.values(student).every(value => value)) {
+    
+    document.getElementById("studentInfo").innerHTML = `
+      <p><strong>Name:</strong> ${student.name}</p>
+      <p><strong>Surname:</strong> ${student.surname}</p>
+      <p><strong>Phone:</strong> ${student.phone}</p>
+      <p><strong>Registry Number:</strong> ${student.registryNumber}</p>
+    `;
+  } else {
+    alert("Please fill in all fields.");
+  }
+}
+</script>
+
+</body>
+</html>

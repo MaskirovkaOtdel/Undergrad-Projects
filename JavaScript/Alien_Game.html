@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Spaceship vs Aliens</title>
+  <style>
+    * {
+      margin: 0; padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: radial-gradient(ellipse at center, #000 0%, #111 100%);
+      overflow: hidden;
+      font-family: 'Orbitron', sans-serif;
+    }
+
+    canvas {
+      display: block;
+      margin: auto;
+      background: transparent;
+    }
+
+    #score {
+      position: absolute;
+      top: 15px;
+      left: 20px;
+      color: #00ffcc;
+      font-size: 24px;
+      text-shadow: 0 0 5px #0ff;
+    }
+
+    #gameOver {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: red;
+      font-size: 3rem;
+      text-align: center;
+      display: none;
+      text-shadow: 0 0 10px #f00;
+    }
+
+    #restartBtn {
+      margin-top: 20px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #222;
+      border: 2px solid #0ff;
+      color: #0ff;
+      cursor: pointer;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+
+    #restartBtn:hover {
+      background: #0ff;
+      color: #000;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="gameCanvas"></canvas>
+  <div id="score">Score: 5</div>
+  <div id="gameOver">
+    🚨 GAME OVER 🚨<br/>
+    <button id="restartBtn">RESTART</button>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("gameCanvas");
+    const ctx = canvas.getContext("2d");
+
+    const scoreElement = document.getElementById("score");
+    const gameOverElement = document.getElementById("gameOver");
+    const restartBtn = document.getElementById("restartBtn");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    let spaceship, aliens, bullets, score, gameOver;
+
+    function init() {
+      spaceship = {
+        x: canvas.width / 2,
+        y: canvas.height - 80,
+        width: 50,
+        height: 60,
+        speed: 10,
+        color: '#00faff'
+      };
+      aliens = [];
+      bullets = [];
+      score = 5;
+      gameOver = false;
+      scoreElement.textContent = `Score: ${score}`;
+      gameOverElement.style.display = 'none';
+    }
+
+    function drawSpaceship() {
+      ctx.save();
+      ctx.shadowBlur = 25;
+      ctx.shadowColor = spaceship.color;
+      ctx.fillStyle = spaceship.color;
+
+      ctx.beginPath();
+      ctx.moveTo(spaceship.x, spaceship.y);
+      ctx.lineTo(spaceship.x - spaceship.width / 2, spaceship.y + spaceship.height);
+      ctx.lineTo(spaceship.x + spaceship.width / 2, spaceship.y + spaceship.height);
+      ctx.closePath();
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    function drawAlien(alien) {
+      ctx.save();
+      const gradient = ctx.createRadialGradient(
+        alien.x, alien.y, 0,
+        alien.x, alien.y, alien.size
+      );
+      gradient.addColorStop(0, 'lime');
+      gradient.addColorStop(1, 'darkgreen');
+
+      ctx.fillStyle = gradient;
+      ctx.shadowBlur = 15;
+      ctx.shadowColor = 'lime';
+      ctx.beginPath();
+      ctx.arc(alien.x, alien.y, alien.size, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.restore();
+    }
+
+    function drawBullet(bullet) {
+      ctx.save();
+      ctx.strokeStyle = bullet.color;
+      ctx.lineWidth = 4;
+      ctx.shadowColor = bullet.color;
+      ctx.shadowBlur = 10;
+      ctx.beginPath();
+      ctx.moveTo(bullet.x, bullet.y);
+      ctx.lineTo(bullet.x, bullet.y - 15);
+      ctx.stroke();
+      ctx.restore();
+    }
+
+    function spawnAlien() {
+      const size = 20 + Math.random() * 10;
+      const x = Math.random() * (canvas.width - size);
+      aliens.push({ x, y: -size, size });
+    }
+
+    function fireBullet() {
+      bullets.push({
+        x: spaceship.x,
+        y: spaceship.y,
+        speed: 10,
+        color: '#ff0055'
+      });
+    }
+
+    function handleCollision() {
+      
+      bullets.forEach((bullet, bIndex) => {
+        aliens.forEach((alien, aIndex) => {
+          const dx = alien.x - bullet.x;
+          const dy = alien.y - bullet.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < alien.size) {
+            aliens.splice(aIndex, 1);
+            bullets.splice(bIndex, 1);
+          }
+        });
+      });
+
+      
+      for (let i = aliens.length - 1; i >= 0; i--) {
+        const alien = aliens[i];
+        if (
+          alien.x < spaceship.x + spaceship.width / 2 &&
+          alien.x > spaceship.x - spaceship.width / 2 &&
+          alien.y + alien.size > spaceship.y
+        ) {
+          aliens.splice(i, 1);
+          score--;
+          scoreElement.textContent = `Score: ${score}`;
+          if (score <= 0) {
+            gameOver = true;
+            gameOverElement.style.display = 'block';
+          }
+        } else if (alien.y > canvas.height) {
+          aliens.splice(i, 1);
+        }
+      }
+    }
+
+    function updateGame() {
+      if (gameOver) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      drawSpaceship();
+
+      aliens.forEach((alien) => {
+        alien.y += 2;
+        drawAlien(alien);
+      });
+
+      bullets.forEach((bullet, index) => {
+        bullet.y -= bullet.speed;
+        if (bullet.y < 0) bullets.splice(index, 1);
+        else drawBullet(bullet);
+      });
+
+      handleCollision();
+
+      requestAnimationFrame(updateGame);
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (gameOver) return;
+      if (e.key === 'ArrowLeft' || e.key === 'a') {
+        spaceship.x -= spaceship.speed;
+        if (spaceship.x - spaceship.width / 2 < 0)
+          spaceship.x = spaceship.width / 2;
+      } else if (e.key === 'ArrowRight' || e.key === 'd') {
+        spaceship.x += spaceship.speed;
+        if (spaceship.x + spaceship.width / 2 > canvas.width)
+          spaceship.x = canvas.width - spaceship.width / 2;
+      } else if (e.key === ' ' || e.key === 'ArrowUp') {
+        fireBullet();
+      }
+    });
+
+    restartBtn.addEventListener('click', () => {
+      init();
+      updateGame();
+    });
+
+    
+    init();
+    setInterval(() => {
+      if (!gameOver) spawnAlien();
+    }, 1000);
+    updateGame();
+  </script>
+</body>
+</html>

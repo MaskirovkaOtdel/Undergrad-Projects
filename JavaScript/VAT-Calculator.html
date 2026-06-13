@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>VAT Calculation</title>
+	<style>
+		body {
+			font-family: Arial, sans-serif;
+			margin: 50px;
+		}
+		input {
+			margin: 5px;
+			padding: 8px;
+			font-size: 16px;
+		}
+		button {
+			padding: 8px 12px;
+			font-size: 16px;
+			cursor: pointer;
+		}
+		#result {
+			margin-top: 10px;
+			font-size: 18px;
+			font-weight: bold;
+		}
+	</style>
+</head>
+<body>
+	<h2>VAT Calculator</h2>
+	<form onsubmit="calculateVAT()">
+		<label for="num1">Enter the initial amount</label>
+		<input type="number" id="num1" required>
+		<br>
+	</form>
+
+	<p id="result"></p>
+	<button type="button" onclick="calculateVAT()">Solve</button>
+	
+	<script>
+		function calculateVAT() {
+			event.preventDefault();
+
+			let num1 = parseFloat(document.getElementById("num1").value);
+
+			let VAT = num1 * 0.24;
+			let FValue = num1 + VAT;
+
+			document.getElementById("result").innerText = "Final Value: " + FValue + " with VAT: " + VAT;
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,28 @@
+<!Doctype html>
+<html lang="el">
+<head>
+	<meta charset="UTF-8">
+<title>Age Message</title>
+</head>
+<body>
+<h2>Age Message</h2>
+
+<br>Provide Name: <br>
+<input type="text" id="name"><br>
+<br>Provide Age: <br>
+<input type="number" id="age"><br>
+<button onclick="message()">Execute</button>
+
+<p id="result"></p>
+
+<script>
+function message() {
+let name,age,res,output;
+	output=document.getElementById("result");
+	name=document.getElementById("name").value;
+	age=document.getElementById("age").value;
+	res=`Ms/Mr ${name} is ${age} years old`;
+	output.innerText=res;
+}
+</script>
+</html>

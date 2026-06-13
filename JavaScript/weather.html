@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            font-size: 2.5rem;
+            color: #2c3e50;
+        }
+
+        form {
+            background: #ffffffdd;
+            padding: 20px 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            font-size: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #2980b9;
+            color: white;
+            cursor: pointer;
+        }
+
+        .weather-container {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            padding: 30px;
+            margin-top: 20px;
+            width: 90%;
+            max-width: 600px;
+            font-style: italic;
+        }
+
+        .weather-container h2 {
+            font-style: normal;
+            color: #34495e;
+            border-bottom: 2px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .weather-detail {
+            margin: 10px 0;
+        }
+
+        strong {
+            color: #2c3e50;
+        }
+
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+
+        .location-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .location-list li {
+            cursor: pointer;
+            margin: 5px 0;
+            background: #ecf0f1;
+            padding: 8px;
+            border-radius: 5px;
+        }
+
+        .location-list li:hover {
+            background: #bdc3c7;
+        }
+    </style>
+</head>
+<body>
+    <h1>Weather Checker</h1>
+
+    <form id="location-form">
+        <label>
+            Location Name (e.g., "Athens"):
+            <input type="text" id="location-name" required placeholder="Enter a location name">
+        </label>
+        <button type="submit">Get Weather</button>
+    </form>
+
+    <ul id="location-list" class="location-list"></ul>
+
+    <div id="weather" class="weather-container">
+        <p>Enter a location name to get the weather.</p>
+    </div>
+
+    <script>
+        const form = document.getElementById('location-form');
+        const weatherContainer = document.getElementById('weather');
+        const locationList = document.getElementById('location-list');
+
+        const OPEN_CAGE_API_KEY = '7aa9bc2570b44923b867b5b62903550b';
+
+        function formatDateTime(dateTimeStr, timezone) {
+            const date = new Date(dateTimeStr);
+
+            const options = {
+                weekday: 'long',
+                day: '2-digit',
+                month: '2-digit',
+                year: 'numeric',
+                hour: '2-digit',
+                minute: '2-digit',
+                timeZone: timezone, 
+                timeZoneName: 'short' 
+            };
+
+            const formattedTime = date.toLocaleString('en-GB', options).replace(',', '');
+
+            const offset = -date.getTimezoneOffset() / 60; 
+            const formattedOffset = offset >= 0 ? `UTC+${offset}` : `UTC${offset}`; 
+
+            return `${formattedTime} ${formattedOffset}`;
+        }
+
+        function getWeather(lat, lon, timezone) {
+            const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true&timezone=UTC`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const weather = data.current_weather;
+
+                    if (weather) {
+                        weatherContainer.innerHTML = `
+                            <h2>Current Weather</h2>
+                            <div class="weather-detail"><strong>Temperature:</strong> ${weather.temperature} °C</div>
+                            <div class="weather-detail"><strong>Windspeed:</strong> ${weather.windspeed} km/h</div>
+                            <div class="weather-detail"><strong>Wind Direction:</strong> ${weather.winddirection}°</div>
+                            <div class="weather-detail"><strong>Weather Code:</strong> ${weather.weathercode}</div>
+                            <div class="weather-detail"><strong>Time (UTC):</strong> ${formatDateTime(weather.time, timezone)}</div>
+                            <div class="weather-detail"><strong>Timezone:</strong> ${timezone}</div>
+                        `;
+                    } else {
+                        weatherContainer.innerHTML = `<p class="error">Weather data unavailable for this location.</p>`;
+                    }
+                })
+                .catch(error => {
+                    weatherContainer.innerHTML = `<p class="error">Error fetching data: ${error.message}</p>`;
+                });
+        }
+
+        function getCoordinatesFromLocation(location) {
+            const url = `https://api.opencagedata.com/geocode/v1/json?q=${encodeURIComponent(location)}&key=${OPEN_CAGE_API_KEY}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.results && data.results.length > 0) {
+                        // Clear previous list
+                        locationList.innerHTML = '';
+
+                        data.results.forEach((result, index) => {
+                            const { lat, lng } = result.geometry;
+                            const { formatted } = result;
+                            const timezone = result.annotations.timezone.name || 'Europe/Athens';
+
+                            const li = document.createElement('li');
+                            li.textContent = `${formatted} (Timezone: ${timezone})`;
+                            li.addEventListener('click', () => {
+                                getWeather(lat, lng, timezone);
+                                locationList.innerHTML = ''; // Hide the list after selection
+                            });
+
+                            locationList.appendChild(li);
+                        });
+
+                        if (data.results.length === 0) {
+                            locationList.innerHTML = '<li>No matching locations found.</li>';
+                        }
+                    } else {
+                        locationList.innerHTML = '<li>No matching locations found.</li>';
+                    }
+                })
+                .catch(error => {
+                    weatherContainer.innerHTML = `<p class="error">Error fetching coordinates: ${error.message}</p>`;
+                });
+        }
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+            const locationName = document.getElementById('location-name').value.trim();
+            if (locationName) {
+                getCoordinatesFromLocation(locationName);
+            }
+        });
+
+        window.onload = () => {
+            getWeather(37.9838, 23.7275, 'Europe/Athens'); 
+        };
+    </script>
+</body>
+</html>

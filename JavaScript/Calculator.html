@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Advanced Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .calculator-form {
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    .calculator-form h2 {
+      text-align: center;
+    }
+    .form-section {
+      margin-bottom: 20px;
+    }
+    .form-section label {
+      display: block;
+      margin-bottom: 5px;
+    }
+    .checkbox-group label {
+      display: inline-block;
+      margin-right: 10px;
+    }
+    .results {
+      margin-top: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator-form">
+    <h2>Advanced Calculator</h2>
+    <form id="calcForm">
+      <!-- Unary Operations Section -->
+      <div class="form-section">
+        <h3>Unary Operations</h3>
+        <label for="numberUnary">Enter a number:</label>
+        <input type="number" id="numberUnary" name="numberUnary" step="any">
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="unaryOp" value="sqrt"> Square Root</label>
+          <label><input type="checkbox" name="unaryOp" value="square"> Square</label>
+          <label><input type="checkbox" name="unaryOp" value="cube"> Cube</label>
+          <label><input type="checkbox" name="unaryOp" value="sin"> Sine</label>
+          <label><input type="checkbox" name="unaryOp" value="cos"> Cosine</label>
+          <label><input type="checkbox" name="unaryOp" value="tan"> Tangent</label>
+          <label><input type="checkbox" name="unaryOp" value="log"> Logarithm</label>
+          <label><input type="checkbox" name="unaryOp" value="exp"> Exponential</label>
+          <label><input type="checkbox" name="unaryOp" value="factorial"> Factorial</label>
+        </div>
+      </div>
+
+      <!-- Binary Operations Section -->
+      <div class="form-section">
+        <h3>Binary Operations</h3>
+        <label for="number1">Enter first number:</label>
+        <input type="number" id="number1" name="number1" step="any">
+        <label for="number2">Enter second number:</label>
+        <input type="number" id="number2" name="number2" step="any">
+        <div class="checkbox-group">
+          <label><input type="checkbox" name="binaryOp" value="add"> Addition</label>
+          <label><input type="checkbox" name="binaryOp" value="subtract"> Subtraction</label>
+          <label><input type="checkbox" name="binaryOp" value="multiply"> Multiplication</label>
+          <label><input type="checkbox" name="binaryOp" value="divide"> Division</label>
+          <label><input type="checkbox" name="binaryOp" value="power"> Power</label>
+        </div>
+      </div>
+
+      <button type="submit">Calculate</button>
+    </form>
+    <div id="results" class="results"></div>
+  </div>
+  <!-- External JavaScript file -->
+  <script src="Calculator.js"></script>
+</body>
+</html>

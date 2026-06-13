@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+  <meta charset="UTF-8">
+  <title>Test Function</title>
+  <style>
+  </style>
+</head>
+<body>
+  <h1><strong>Test Function - Number Error</strong></h1>
+  
+  <form id="numberForm">
+    <label for="a">Number A:</label>
+    <input type="text" name="number A" id="a">
+    <br>
+    <label for="b">Number B:</label>
+    <input type="text" name="number B" id="b">
+    <br>
+    <button type="submit">Calculation Log</button>
+  </form>
+
+</body>
+<script>
+function addNumbers(a, b) {
+  try {
+    if (isNaN(a) || isNaN(b)) {
+      throw new Error("Both 2 parameters must be numbers!");
+    }
+    let result = a + b;
+    console.log(result);
+    alert(result);
+  } catch (error) {
+    console.error("Error caught: ", error.message);
+    alert("Error caught: " + error.message);
+  }
+}
+
+document.getElementById('numberForm').addEventListener('submit', function(event) {
+  event.preventDefault(); 
+  let valA = document.getElementById('a').value;
+  let valB = document.getElementById('b').value;
+  addNumbers(valA, valB);
+});
+
+
+addNumbers(10, "abc");
+</script>
+</html>
