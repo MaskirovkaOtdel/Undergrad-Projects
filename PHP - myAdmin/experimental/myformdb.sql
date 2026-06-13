@@ -1,0 +1,8 @@
+CREATE TABLE users (
+	id INT AUTO_INCREMENT PRIMARY KEY,
+	username VARCHAR(15) NOT NULL,
+	surname VARCHAR(20) NOT NULL,
+	gender VARCHAR(10) NOT NULL,
+	department VARCHAR(100) NOT NULL
+	);
+	
