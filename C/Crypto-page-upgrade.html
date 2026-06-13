@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Πληροφορίες για τα κρυπτονομίσματα, Bitcoin, Ethereum και άλλα ψηφιακά νομίσματα. Μαθαίνετε για τις τελευταίες τάσεις στον κόσμο των κρυπτονομισμάτων.">
+    <meta name="keywords" content="κρυπτονομίσματα, Bitcoin, Ethereum, Ripple, Litecoin, blockchain">
+    <meta name="author" content="Cryptosite Team">
+    <title>Κρυπτονομίσματα - Οδηγός και Πληροφορίες</title>
+    <style>
+        /* Βασικές ρυθμίσεις για το σώμα της σελίδας */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #3498db, #2ecc71); /* Gradient για μοντέρνα εμφάνιση */
+            margin: 0;
+            padding: 0;
+            color: white;
+            text-align: center;
+            transition: background-color 0.5s ease;
+        }
+
+        header {
+            background-color: rgba(44, 62, 80, 0.9);
+            padding: 30px 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 2px solid #1abc9c;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 36px;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6);
+            animation: slideIn 1s ease-out;
+        }
+
+        nav {
+            background-color: rgba(44, 62, 80, 0.8);
+            padding: 15px 0;
+            text-align: center;
+            position: fixed;
+            top: 90px;
+            width: 100%;
+            z-index: 999;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        nav a {
+            color: white;
+            font-size: 18px;
+            text-decoration: none;
+            margin: 0 20px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        nav a:hover {
+            background-color: #1abc9c;
+            transform: scale(1.1); /* Εφέ μεγέθυνσης όταν ο χρήστης περάσει τον δείκτη */
+        }
+
+        section {
+            padding: 30px;
+            margin: 120px auto;
+            max-width: 1000px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            line-height: 1.8;
+            opacity: 1 !important; /* Διασφαλίζουμε ότι είναι πλήρως ορατό */
+            visibility: visible !important; /* Διασφαλίζουμε ότι το στοιχείο είναι ορατό */
+            z-index: 1;
+            display: block; /* Διασφαλίζουμε ότι το display είναι block για να εμφανίζεται κανονικά */
+            box-sizing: border-box; /* Προσθήκη για να συμπεριληφθούν τα padding και τα border στην τιμή του πλάτους */
+        }
+
+        h2 {
+            color: #34495e;
+            font-size: 28px;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        ul {
+            list-style-type: square;
+            margin-left: 20px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background-color: #1abc9c;
+            color: white;
+            padding: 15px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            margin-top: 20px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .cta-button:hover {
+            background-color: #16a085;
+            transform: scale(1.05); /* Εφέ μεγέθυνσης */
+        }
+
+        footer {
+            padding: 20px;
+            background-color: rgba(44, 62, 80, 0.9);
+            color: white;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        .footer-social a {
+            margin: 0 15px;
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-social a:hover {
+            color: #1abc9c;
+        }
+
+        /* Εφέ εμφάνισης με animation */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Εφέ για το slide-in του header */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Βελτιστοποίηση για μικρότερες οθόνες */
+        @media (max-width: 768px) {
+            nav a {
+                font-size: 16px;
+                margin: 0 10px;
+            }
+
+            section {
+                padding: 20px;
+                margin: 10px;
+            }
+
+            header h1 {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Κρυπτονομίσματα - Οδηγός και Πληροφορίες</h1>
+    </header>
+
+    <nav>
+        <a href="#ti-einai-ta-kriptonomata">Τι είναι τα Κρυπτονομίσματα;</a>
+        <a href="#dimofilestera">Δημοφιλέστερα Κρυπτονομίσματα</a>
+        <a href="#pleonektimata">Πλεονεκτήματα</a>
+        <a href="#kindynoi">Κίνδυνοι</a>
+        <a href="#pos-na-xekiniseis">Πως να Ξεκινήσεις</a>
+        <a href="#epikoinonia">Επικοινωνία</a>
+    </nav>
+
+    <section id="ti-einai-ta-kriptonomata">
+        <h2>Τι είναι τα Κρυπτονομίσματα;</h2>
+        <p>Τα κρυπτονομίσματα είναι ψηφιακά νομίσματα που χρησιμοποιούν την τεχνολογία blockchain για να εξασφαλίσουν τις συναλλαγές τους χωρίς την ανάγκη ενδιάμεσων, όπως τράπεζες. Το πιο γνωστό κρυπτονόμισμα είναι το Bitcoin, αλλά υπάρχουν και άλλες επιλογές όπως το Ethereum, το Ripple και το Litecoin.</p>
+    </section>
+
+    <section id="dimofilestera">
+        <h2>Δημοφιλέστερα Κρυπτονομίσματα</h2>
+        <ul>
+            <li><strong>Bitcoin (BTC)</strong>: Το πρώτο κρυπτονόμισμα, το οποίο παραμένει το πιο δημοφιλές και έχει τη μεγαλύτερη κεφαλαιοποίηση.</li>
+            <li><strong>Ethereum (ETH)</strong>: Ένα κρυπτονόμισμα που υποστηρίζει "smart contracts" και αποκεντρωμένες εφαρμογές.</li>
+            <li><strong>Ripple (XRP)</strong>: Σχεδιασμένο για γρήγορες και φθηνές διεθνείς χρηματοοικονομικές συναλλαγές.</li>
+            <li><strong>Litecoin (LTC)</strong>: Μια "ελαφριά" έκδοση του Bitcoin με ταχύτερους χρόνους συναλλαγών.</li>
+        </ul>
+    </section>
+
+    <section id="pleonektimata">
+        <h2>Πλεονεκτήματα των Κρυπτονομισμάτων</h2>
+        <ul>
+            <li><strong>Ασφάλεια</strong>: Χρησιμοποιούν την τεχνολογία blockchain για ασφαλείς και αδιάβλητες συναλλαγές.</li>
+            <li><strong>Αποκέντρωση</strong>: Δεν ελέγχονται από κεντρικές αρχές ή κυβερνήσεις.</li>
+            <li><strong>Ταχύτητα</strong>: Οι συναλλαγές πραγματοποιούνται γρήγορα, ακόμα και διεθνώς.</li>
+            <li><strong>Χαμηλά Κόστη</strong>: Τα τέλη για τις συναλλαγές είναι συνήθως χαμηλότερα από τις παραδοσιακές μεθόδους πληρωμής.</li>
+        </ul>
+    </section>
+
+    <section id="kindynoi">
+        <h2>Κίνδυνοι και Προειδοποιήσεις</h2>
+        <ul>
+            <li><strong>Μεταβλητότητα</strong>: Η τιμή των κρυπτονομισμάτων είναι εξαιρετικά ασταθής και μπορεί να αλλάξει απότομα.</li>
+            <li><strong>Νομική Αβεβαιότητα</strong>: Σε κάποιες χώρες, οι κανονισμοί για τα κρυπτονομίσματα είναι ασαφείς ή περιοριστικοί.</li>
+            <li><strong>Απάτες</strong>: Υπάρχουν περιπτώσεις απατών και κλοπών που στοχεύουν επενδυτές σε κρυπτονομίσματα.</li>
+        </ul>
+    </section>
+
+    <section id="pos-na-xekiniseis">
+        <h2>Πως να Ξεκινήσεις</h2>
+        <p>Για να ξεκινήσεις με τα κρυπτονομίσματα, θα πρέπει να δημιουργήσεις έναν λογαριασμό σε μια αξιόπιστη πλατφόρμα ανταλλαγής, όπως το Binance ή το Coinbase. Στη συνέχεια, μπορείς να αγοράσεις κρυπτονομίσματα και να τα αποθηκεύσεις σε πορτοφόλι κρυπτονομισμάτων.</p>
+        <a href="https://www.binance.com" class="cta-button" target="_blank">Ξεκίνα με το Binance</a>
+    </section>
+
+    <section id="epikoinonia">
+        <h2>Επικοινωνία</h2>
+        <p>Για οποιεσδήποτε ερωτήσεις ή απορίες, επικοινήστε μαζί μας μέσω της φόρμας επικοινωνίας ή στείλτε μας email στο <a href="mailto:info@cryptosite.gr">info@cryptosite.gr</a>.</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Cryptosite. Όλα τα δικαιώματα διατηρούνται.</p>
+        <div class="footer-social">
+            <a href="https://facebook.com" target="_blank">F</a>
+            <a href="https://twitter.com" target="_blank">T</a>
+            <a href="https://instagram.com" target="_blank">I</a>
+        </div>
+    </footer>
+
+</body>
+</html>

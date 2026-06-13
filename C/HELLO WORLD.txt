@@ -1,0 +1,22 @@
+/******************************************************************************
+
+                            Online C Compiler.
+                Code, Compile, Run and Debug C program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <stdio.h>
+
+int main()
+{
+    printf("Hello World\n Hello Mr.Konstatidinos\n Hello Mrs.Doukeni\n I love my teachers!\n");
+
+    printf("Hello World\n ");
+    printf("Hello Mr.Konstadinos\n ");
+    printf("Hello Mrs.Doukeni\n ");
+    printf("I love my teachers!");
+
+
+    return 0;
+}
